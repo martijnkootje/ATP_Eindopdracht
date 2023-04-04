@@ -3,7 +3,9 @@ project(ATP_Eindopdracht)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include(extern/pybind11/CMakeLists.txt)
+add_subdirectory(extern/pybind11)
+include_directories(C:/Python310/include)
+link_libraries(C:/Python310/libs/Python310.lib)
 
 file(GLOB SOURCES
         *.h
@@ -11,4 +13,3 @@ file(GLOB SOURCES
         )
 
 add_executable(ATP_Eindopdracht ${SOURCES})
-

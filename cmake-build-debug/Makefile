@@ -64,6 +64,30 @@ CMAKE_BINARY_DIR = C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-d
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -P cmake_install.cmake
+.PHONY : install/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -83,6 +107,27 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -128,6 +173,290 @@ ATP_Eindopdracht/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/build
 .PHONY : ATP_Eindopdracht/fast
 
+#=============================================================================
+# Target rules for targets named pybind11_tests
+
+# Build rule for target.
+pybind11_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 pybind11_tests
+.PHONY : pybind11_tests
+
+# fast build rule for target.
+pybind11_tests/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\CMakeFiles\pybind11_tests.dir\build.make extern/pybind11/tests/CMakeFiles/pybind11_tests.dir/build
+.PHONY : pybind11_tests/fast
+
+#=============================================================================
+# Target rules for targets named pybind11_cross_module_tests
+
+# Build rule for target.
+pybind11_cross_module_tests: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 pybind11_cross_module_tests
+.PHONY : pybind11_cross_module_tests
+
+# fast build rule for target.
+pybind11_cross_module_tests/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\CMakeFiles\pybind11_cross_module_tests.dir\build.make extern/pybind11/tests/CMakeFiles/pybind11_cross_module_tests.dir/build
+.PHONY : pybind11_cross_module_tests/fast
+
+#=============================================================================
+# Target rules for targets named cross_module_gil_utils
+
+# Build rule for target.
+cross_module_gil_utils: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cross_module_gil_utils
+.PHONY : cross_module_gil_utils
+
+# fast build rule for target.
+cross_module_gil_utils/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\CMakeFiles\cross_module_gil_utils.dir\build.make extern/pybind11/tests/CMakeFiles/cross_module_gil_utils.dir/build
+.PHONY : cross_module_gil_utils/fast
+
+#=============================================================================
+# Target rules for targets named cross_module_interleaved_error_already_set
+
+# Build rule for target.
+cross_module_interleaved_error_already_set: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 cross_module_interleaved_error_already_set
+.PHONY : cross_module_interleaved_error_already_set
+
+# fast build rule for target.
+cross_module_interleaved_error_already_set/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\CMakeFiles\cross_module_interleaved_error_already_set.dir\build.make extern/pybind11/tests/CMakeFiles/cross_module_interleaved_error_already_set.dir/build
+.PHONY : cross_module_interleaved_error_already_set/fast
+
+#=============================================================================
+# Target rules for targets named pytest
+
+# Build rule for target.
+pytest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 pytest
+.PHONY : pytest
+
+# fast build rule for target.
+pytest/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\CMakeFiles\pytest.dir\build.make extern/pybind11/tests/CMakeFiles/pytest.dir/build
+.PHONY : pytest/fast
+
+#=============================================================================
+# Target rules for targets named memcheck
+
+# Build rule for target.
+memcheck: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 memcheck
+.PHONY : memcheck
+
+# fast build rule for target.
+memcheck/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\CMakeFiles\memcheck.dir\build.make extern/pybind11/tests/CMakeFiles/memcheck.dir/build
+.PHONY : memcheck/fast
+
+#=============================================================================
+# Target rules for targets named check
+
+# Build rule for target.
+check: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 check
+.PHONY : check
+
+# fast build rule for target.
+check/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\CMakeFiles\check.dir\build.make extern/pybind11/tests/CMakeFiles/check.dir/build
+.PHONY : check/fast
+
+#=============================================================================
+# Target rules for targets named test_build_subdirectory_target
+
+# Build rule for target.
+test_build_subdirectory_target: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_build_subdirectory_target
+.PHONY : test_build_subdirectory_target
+
+# fast build rule for target.
+test_build_subdirectory_target/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\CMakeFiles\test_build_subdirectory_target.dir\build.make extern/pybind11/tests/test_cmake_build/CMakeFiles/test_build_subdirectory_target.dir/build
+.PHONY : test_build_subdirectory_target/fast
+
+#=============================================================================
+# Target rules for targets named test_cmake_build
+
+# Build rule for target.
+test_cmake_build: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_cmake_build
+.PHONY : test_cmake_build
+
+# fast build rule for target.
+test_cmake_build/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\CMakeFiles\test_cmake_build.dir\build.make extern/pybind11/tests/test_cmake_build/CMakeFiles/test_cmake_build.dir/build
+.PHONY : test_cmake_build/fast
+
+#=============================================================================
+# Target rules for targets named test_build_subdirectory_function
+
+# Build rule for target.
+test_build_subdirectory_function: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_build_subdirectory_function
+.PHONY : test_build_subdirectory_function
+
+# fast build rule for target.
+test_build_subdirectory_function/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\CMakeFiles\test_build_subdirectory_function.dir\build.make extern/pybind11/tests/test_cmake_build/CMakeFiles/test_build_subdirectory_function.dir/build
+.PHONY : test_build_subdirectory_function/fast
+
+#=============================================================================
+# Target rules for targets named test_build_installed_function
+
+# Build rule for target.
+test_build_installed_function: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_build_installed_function
+.PHONY : test_build_installed_function
+
+# fast build rule for target.
+test_build_installed_function/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\CMakeFiles\test_build_installed_function.dir\build.make extern/pybind11/tests/test_cmake_build/CMakeFiles/test_build_installed_function.dir/build
+.PHONY : test_build_installed_function/fast
+
+#=============================================================================
+# Target rules for targets named test_build_subdirectory_embed
+
+# Build rule for target.
+test_build_subdirectory_embed: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_build_subdirectory_embed
+.PHONY : test_build_subdirectory_embed
+
+# fast build rule for target.
+test_build_subdirectory_embed/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\CMakeFiles\test_build_subdirectory_embed.dir\build.make extern/pybind11/tests/test_cmake_build/CMakeFiles/test_build_subdirectory_embed.dir/build
+.PHONY : test_build_subdirectory_embed/fast
+
+#=============================================================================
+# Target rules for targets named mock_install
+
+# Build rule for target.
+mock_install: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 mock_install
+.PHONY : mock_install
+
+# fast build rule for target.
+mock_install/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\CMakeFiles\mock_install.dir\build.make extern/pybind11/tests/test_cmake_build/CMakeFiles/mock_install.dir/build
+.PHONY : mock_install/fast
+
+#=============================================================================
+# Target rules for targets named test_build_installed_target
+
+# Build rule for target.
+test_build_installed_target: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_build_installed_target
+.PHONY : test_build_installed_target
+
+# fast build rule for target.
+test_build_installed_target/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\CMakeFiles\test_build_installed_target.dir\build.make extern/pybind11/tests/test_cmake_build/CMakeFiles/test_build_installed_target.dir/build
+.PHONY : test_build_installed_target/fast
+
+#=============================================================================
+# Target rules for targets named test_build_installed_embed
+
+# Build rule for target.
+test_build_installed_embed: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_build_installed_embed
+.PHONY : test_build_installed_embed
+
+# fast build rule for target.
+test_build_installed_embed/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\CMakeFiles\test_build_installed_embed.dir\build.make extern/pybind11/tests/test_cmake_build/CMakeFiles/test_build_installed_embed.dir/build
+.PHONY : test_build_installed_embed/fast
+
+#=============================================================================
+# Target rules for targets named test_subdirectory_target
+
+# Build rule for target.
+test_subdirectory_target: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_subdirectory_target
+.PHONY : test_subdirectory_target
+
+# fast build rule for target.
+test_subdirectory_target/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\subdirectory_target\CMakeFiles\test_subdirectory_target.dir\build.make extern/pybind11/tests/test_cmake_build/subdirectory_target/CMakeFiles/test_subdirectory_target.dir/build
+.PHONY : test_subdirectory_target/fast
+
+#=============================================================================
+# Target rules for targets named check_subdirectory_target
+
+# Build rule for target.
+check_subdirectory_target: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 check_subdirectory_target
+.PHONY : check_subdirectory_target
+
+# fast build rule for target.
+check_subdirectory_target/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\subdirectory_target\CMakeFiles\check_subdirectory_target.dir\build.make extern/pybind11/tests/test_cmake_build/subdirectory_target/CMakeFiles/check_subdirectory_target.dir/build
+.PHONY : check_subdirectory_target/fast
+
+#=============================================================================
+# Target rules for targets named test_subdirectory_embed
+
+# Build rule for target.
+test_subdirectory_embed: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_subdirectory_embed
+.PHONY : test_subdirectory_embed
+
+# fast build rule for target.
+test_subdirectory_embed/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\subdirectory_embed\CMakeFiles\test_subdirectory_embed.dir\build.make extern/pybind11/tests/test_cmake_build/subdirectory_embed/CMakeFiles/test_subdirectory_embed.dir/build
+.PHONY : test_subdirectory_embed/fast
+
+#=============================================================================
+# Target rules for targets named check_subdirectory_embed
+
+# Build rule for target.
+check_subdirectory_embed: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 check_subdirectory_embed
+.PHONY : check_subdirectory_embed
+
+# fast build rule for target.
+check_subdirectory_embed/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\subdirectory_embed\CMakeFiles\check_subdirectory_embed.dir\build.make extern/pybind11/tests/test_cmake_build/subdirectory_embed/CMakeFiles/check_subdirectory_embed.dir/build
+.PHONY : check_subdirectory_embed/fast
+
+#=============================================================================
+# Target rules for targets named test_embed_lib
+
+# Build rule for target.
+test_embed_lib: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 test_embed_lib
+.PHONY : test_embed_lib
+
+# fast build rule for target.
+test_embed_lib/fast:
+	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\subdirectory_embed\CMakeFiles\test_embed_lib.dir\build.make extern/pybind11/tests/test_cmake_build/subdirectory_embed/CMakeFiles/test_embed_lib.dir/build
+.PHONY : test_embed_lib/fast
+
+magnetoSensor.obj: magnetoSensor.cpp.obj
+.PHONY : magnetoSensor.obj
+
+# target to build an object file
+magnetoSensor.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.obj
+.PHONY : magnetoSensor.cpp.obj
+
+magnetoSensor.i: magnetoSensor.cpp.i
+.PHONY : magnetoSensor.i
+
+# target to preprocess a source file
+magnetoSensor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.i
+.PHONY : magnetoSensor.cpp.i
+
+magnetoSensor.s: magnetoSensor.cpp.s
+.PHONY : magnetoSensor.s
+
+# target to generate assembly for a file
+magnetoSensor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.s
+.PHONY : magnetoSensor.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -152,6 +481,78 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+pythonConnection.obj: pythonConnection.cpp.obj
+.PHONY : pythonConnection.obj
+
+# target to build an object file
+pythonConnection.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.obj
+.PHONY : pythonConnection.cpp.obj
+
+pythonConnection.i: pythonConnection.cpp.i
+.PHONY : pythonConnection.i
+
+# target to preprocess a source file
+pythonConnection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.i
+.PHONY : pythonConnection.cpp.i
+
+pythonConnection.s: pythonConnection.cpp.s
+.PHONY : pythonConnection.s
+
+# target to generate assembly for a file
+pythonConnection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.s
+.PHONY : pythonConnection.cpp.s
+
+test.obj: test.cpp.obj
+.PHONY : test.obj
+
+# target to build an object file
+test.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/test.cpp.obj
+.PHONY : test.cpp.obj
+
+test.i: test.cpp.i
+.PHONY : test.i
+
+# target to preprocess a source file
+test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/test.cpp.i
+.PHONY : test.cpp.i
+
+test.s: test.cpp.s
+.PHONY : test.s
+
+# target to generate assembly for a file
+test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/test.cpp.s
+.PHONY : test.cpp.s
+
+zonnePositieSensor.obj: zonnePositieSensor.cpp.obj
+.PHONY : zonnePositieSensor.obj
+
+# target to build an object file
+zonnePositieSensor.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.obj
+.PHONY : zonnePositieSensor.cpp.obj
+
+zonnePositieSensor.i: zonnePositieSensor.cpp.i
+.PHONY : zonnePositieSensor.i
+
+# target to preprocess a source file
+zonnePositieSensor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.i
+.PHONY : zonnePositieSensor.cpp.i
+
+zonnePositieSensor.s: zonnePositieSensor.cpp.s
+.PHONY : zonnePositieSensor.s
+
+# target to generate assembly for a file
+zonnePositieSensor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.s
+.PHONY : zonnePositieSensor.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -159,11 +560,47 @@ help:
 	@echo ... clean
 	@echo ... depend
 	@echo ... edit_cache
+	@echo ... install
+	@echo ... install/local
+	@echo ... install/strip
+	@echo ... list_install_components
 	@echo ... rebuild_cache
+	@echo ... check
+	@echo ... check_subdirectory_embed
+	@echo ... check_subdirectory_target
+	@echo ... memcheck
+	@echo ... mock_install
+	@echo ... pytest
+	@echo ... test_build_installed_embed
+	@echo ... test_build_installed_function
+	@echo ... test_build_installed_target
+	@echo ... test_build_subdirectory_embed
+	@echo ... test_build_subdirectory_function
+	@echo ... test_build_subdirectory_target
+	@echo ... test_cmake_build
 	@echo ... ATP_Eindopdracht
+	@echo ... cross_module_gil_utils
+	@echo ... cross_module_interleaved_error_already_set
+	@echo ... pybind11_cross_module_tests
+	@echo ... pybind11_tests
+	@echo ... test_embed_lib
+	@echo ... test_subdirectory_embed
+	@echo ... test_subdirectory_target
+	@echo ... magnetoSensor.obj
+	@echo ... magnetoSensor.i
+	@echo ... magnetoSensor.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... pythonConnection.obj
+	@echo ... pythonConnection.i
+	@echo ... pythonConnection.s
+	@echo ... test.obj
+	@echo ... test.i
+	@echo ... test.s
+	@echo ... zonnePositieSensor.obj
+	@echo ... zonnePositieSensor.i
+	@echo ... zonnePositieSensor.s
 .PHONY : help
 
 

@@ -1,9 +1,11 @@
 "C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht
-CMake Error at CMakeLists.txt:6 (include):
-  include could not find requested file:
-
-    extern/pybind11/CMakeLists.txt
-
-
--- Configuring incomplete, errors occurred!
-See also "C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/CMakeFiles/CMakeOutput.log".
+-- pybind11 v2.10.4 
+-- pybind11::lto disabled (problems with undefined symbols for MinGW for now)
+-- pybind11::thin_lto disabled (problems with undefined symbols for MinGW for now)
+-- Building tests WITHOUT Eigen, use -DDOWNLOAD_EIGEN=ON on CMake 3.11+ to download
+-- Could NOT find Boost (missing: Boost_INCLUDE_DIR) (Required is at least version "1.56")
+-- Found pytest 7.2.2
+-- Catch not detected. Interpreter tests will be skipped. Install Catch headers manually or use `cmake -DDOWNLOAD_CATCH=ON` to fetch them automatically.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug
