@@ -65,38 +65,10 @@ include CMakeFiles/ATP_Eindopdracht.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/ATP_Eindopdracht.dir/flags.make
 
-CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/flags.make
-CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/includes_CXX.rsp
-CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.obj: ../magnetoSensor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.obj"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ATP_Eindopdracht.dir\magnetoSensor.cpp.obj -c C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\magnetoSensor.cpp
-
-CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.i"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\magnetoSensor.cpp > CMakeFiles\ATP_Eindopdracht.dir\magnetoSensor.cpp.i
-
-CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.s"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\magnetoSensor.cpp -o CMakeFiles\ATP_Eindopdracht.dir\magnetoSensor.cpp.s
-
-CMakeFiles/ATP_Eindopdracht.dir/main.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/flags.make
-CMakeFiles/ATP_Eindopdracht.dir/main.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/includes_CXX.rsp
-CMakeFiles/ATP_Eindopdracht.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/ATP_Eindopdracht.dir/main.cpp.obj"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ATP_Eindopdracht.dir\main.cpp.obj -c C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\main.cpp
-
-CMakeFiles/ATP_Eindopdracht.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ATP_Eindopdracht.dir/main.cpp.i"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\main.cpp > CMakeFiles\ATP_Eindopdracht.dir\main.cpp.i
-
-CMakeFiles/ATP_Eindopdracht.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ATP_Eindopdracht.dir/main.cpp.s"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\main.cpp -o CMakeFiles\ATP_Eindopdracht.dir\main.cpp.s
-
 CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/flags.make
 CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/includes_CXX.rsp
 CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.obj: ../pythonConnection.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.obj"
 	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ATP_Eindopdracht.dir\pythonConnection.cpp.obj -c C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\pythonConnection.cpp
 
 CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.i: cmake_force
@@ -107,56 +79,20 @@ CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.s"
 	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\pythonConnection.cpp -o CMakeFiles\ATP_Eindopdracht.dir\pythonConnection.cpp.s
 
-CMakeFiles/ATP_Eindopdracht.dir/test.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/flags.make
-CMakeFiles/ATP_Eindopdracht.dir/test.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/includes_CXX.rsp
-CMakeFiles/ATP_Eindopdracht.dir/test.cpp.obj: ../test.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/ATP_Eindopdracht.dir/test.cpp.obj"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ATP_Eindopdracht.dir\test.cpp.obj -c C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\test.cpp
-
-CMakeFiles/ATP_Eindopdracht.dir/test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ATP_Eindopdracht.dir/test.cpp.i"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\test.cpp > CMakeFiles\ATP_Eindopdracht.dir\test.cpp.i
-
-CMakeFiles/ATP_Eindopdracht.dir/test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ATP_Eindopdracht.dir/test.cpp.s"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\test.cpp -o CMakeFiles\ATP_Eindopdracht.dir\test.cpp.s
-
-CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/flags.make
-CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.obj: CMakeFiles/ATP_Eindopdracht.dir/includes_CXX.rsp
-CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.obj: ../zonnePositieSensor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.obj"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\ATP_Eindopdracht.dir\zonnePositieSensor.cpp.obj -c C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\zonnePositieSensor.cpp
-
-CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.i"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\zonnePositieSensor.cpp > CMakeFiles\ATP_Eindopdracht.dir\zonnePositieSensor.cpp.i
-
-CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.s"
-	C:\MinGW\w64devkit\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\zonnePositieSensor.cpp -o CMakeFiles\ATP_Eindopdracht.dir\zonnePositieSensor.cpp.s
-
 # Object files for target ATP_Eindopdracht
 ATP_Eindopdracht_OBJECTS = \
-"CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.obj" \
-"CMakeFiles/ATP_Eindopdracht.dir/main.cpp.obj" \
-"CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.obj" \
-"CMakeFiles/ATP_Eindopdracht.dir/test.cpp.obj" \
-"CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.obj"
+"CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.obj"
 
 # External object files for target ATP_Eindopdracht
 ATP_Eindopdracht_EXTERNAL_OBJECTS =
 
-ATP_Eindopdracht.exe: CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.obj
-ATP_Eindopdracht.exe: CMakeFiles/ATP_Eindopdracht.dir/main.cpp.obj
 ATP_Eindopdracht.exe: CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.obj
-ATP_Eindopdracht.exe: CMakeFiles/ATP_Eindopdracht.dir/test.cpp.obj
-ATP_Eindopdracht.exe: CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.obj
 ATP_Eindopdracht.exe: CMakeFiles/ATP_Eindopdracht.dir/build.make
 ATP_Eindopdracht.exe: C:/Python310/libs/Python310.lib
 ATP_Eindopdracht.exe: CMakeFiles/ATP_Eindopdracht.dir/linklibs.rsp
 ATP_Eindopdracht.exe: CMakeFiles/ATP_Eindopdracht.dir/objects1.rsp
 ATP_Eindopdracht.exe: CMakeFiles/ATP_Eindopdracht.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ATP_Eindopdracht.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ATP_Eindopdracht.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ATP_Eindopdracht.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

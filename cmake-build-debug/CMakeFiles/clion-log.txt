@@ -4,7 +4,6 @@
 -- pybind11::thin_lto disabled (problems with undefined symbols for MinGW for now)
 -- Building tests WITHOUT Eigen, use -DDOWNLOAD_EIGEN=ON on CMake 3.11+ to download
 -- Could NOT find Boost (missing: Boost_INCLUDE_DIR) (Required is at least version "1.56")
--- Found pytest 7.2.2
 -- Catch not detected. Interpreter tests will be skipped. Install Catch headers manually or use `cmake -DDOWNLOAD_CATCH=ON` to fetch them automatically.
 -- Configuring done
 -- Generating done

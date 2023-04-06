@@ -3,7 +3,7 @@
 
 #include <array>
 #include <string>
-#include "pythonConnection.h"
+#include "../../pythonConnection.h"
 
 class magnetoSensor {
 private:

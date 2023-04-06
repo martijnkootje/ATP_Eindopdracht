@@ -64,6 +64,18 @@ CMAKE_BINARY_DIR = C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-d
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
+
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -117,18 +129,6 @@ list_install_components:
 list_install_components/fast: list_install_components
 .PHONY : list_install_components/fast
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\CMakeFiles C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\cmake-build-debug\\CMakeFiles\progress.marks
@@ -159,6 +159,19 @@ preinstall/fast:
 depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
+
+#=============================================================================
+# Target rules for targets named example
+
+# Build rule for target.
+example: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 example
+.PHONY : example
+
+# fast build rule for target.
+example/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\example.dir\build.make CMakeFiles/example.dir/build
+.PHONY : example/fast
 
 #=============================================================================
 # Target rules for targets named ATP_Eindopdracht
@@ -433,53 +446,29 @@ test_embed_lib/fast:
 	$(MAKE) $(MAKESILENT) -f extern\pybind11\tests\test_cmake_build\subdirectory_embed\CMakeFiles\test_embed_lib.dir\build.make extern/pybind11/tests/test_cmake_build/subdirectory_embed/CMakeFiles/test_embed_lib.dir/build
 .PHONY : test_embed_lib/fast
 
-magnetoSensor.obj: magnetoSensor.cpp.obj
-.PHONY : magnetoSensor.obj
+CppCode/main.obj: CppCode/main.cpp.obj
+.PHONY : CppCode/main.obj
 
 # target to build an object file
-magnetoSensor.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.obj
-.PHONY : magnetoSensor.cpp.obj
+CppCode/main.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\example.dir\build.make CMakeFiles/example.dir/CppCode/main.cpp.obj
+.PHONY : CppCode/main.cpp.obj
 
-magnetoSensor.i: magnetoSensor.cpp.i
-.PHONY : magnetoSensor.i
-
-# target to preprocess a source file
-magnetoSensor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.i
-.PHONY : magnetoSensor.cpp.i
-
-magnetoSensor.s: magnetoSensor.cpp.s
-.PHONY : magnetoSensor.s
-
-# target to generate assembly for a file
-magnetoSensor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/magnetoSensor.cpp.s
-.PHONY : magnetoSensor.cpp.s
-
-main.obj: main.cpp.obj
-.PHONY : main.obj
-
-# target to build an object file
-main.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/main.cpp.obj
-.PHONY : main.cpp.obj
-
-main.i: main.cpp.i
-.PHONY : main.i
+CppCode/main.i: CppCode/main.cpp.i
+.PHONY : CppCode/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/main.cpp.i
-.PHONY : main.cpp.i
+CppCode/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\example.dir\build.make CMakeFiles/example.dir/CppCode/main.cpp.i
+.PHONY : CppCode/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+CppCode/main.s: CppCode/main.cpp.s
+.PHONY : CppCode/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/main.cpp.s
-.PHONY : main.cpp.s
+CppCode/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\example.dir\build.make CMakeFiles/example.dir/CppCode/main.cpp.s
+.PHONY : CppCode/main.cpp.s
 
 pythonConnection.obj: pythonConnection.cpp.obj
 .PHONY : pythonConnection.obj
@@ -504,54 +493,6 @@ pythonConnection.s: pythonConnection.cpp.s
 pythonConnection.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/pythonConnection.cpp.s
 .PHONY : pythonConnection.cpp.s
-
-test.obj: test.cpp.obj
-.PHONY : test.obj
-
-# target to build an object file
-test.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/test.cpp.obj
-.PHONY : test.cpp.obj
-
-test.i: test.cpp.i
-.PHONY : test.i
-
-# target to preprocess a source file
-test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/test.cpp.i
-.PHONY : test.cpp.i
-
-test.s: test.cpp.s
-.PHONY : test.s
-
-# target to generate assembly for a file
-test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/test.cpp.s
-.PHONY : test.cpp.s
-
-zonnePositieSensor.obj: zonnePositieSensor.cpp.obj
-.PHONY : zonnePositieSensor.obj
-
-# target to build an object file
-zonnePositieSensor.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.obj
-.PHONY : zonnePositieSensor.cpp.obj
-
-zonnePositieSensor.i: zonnePositieSensor.cpp.i
-.PHONY : zonnePositieSensor.i
-
-# target to preprocess a source file
-zonnePositieSensor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.i
-.PHONY : zonnePositieSensor.cpp.i
-
-zonnePositieSensor.s: zonnePositieSensor.cpp.s
-.PHONY : zonnePositieSensor.s
-
-# target to generate assembly for a file
-zonnePositieSensor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\ATP_Eindopdracht.dir\build.make CMakeFiles/ATP_Eindopdracht.dir/zonnePositieSensor.cpp.s
-.PHONY : zonnePositieSensor.cpp.s
 
 # Help Target
 help:
@@ -581,26 +522,18 @@ help:
 	@echo ... ATP_Eindopdracht
 	@echo ... cross_module_gil_utils
 	@echo ... cross_module_interleaved_error_already_set
+	@echo ... example
 	@echo ... pybind11_cross_module_tests
 	@echo ... pybind11_tests
 	@echo ... test_embed_lib
 	@echo ... test_subdirectory_embed
 	@echo ... test_subdirectory_target
-	@echo ... magnetoSensor.obj
-	@echo ... magnetoSensor.i
-	@echo ... magnetoSensor.s
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... CppCode/main.obj
+	@echo ... CppCode/main.i
+	@echo ... CppCode/main.s
 	@echo ... pythonConnection.obj
 	@echo ... pythonConnection.i
 	@echo ... pythonConnection.s
-	@echo ... test.obj
-	@echo ... test.i
-	@echo ... test.s
-	@echo ... zonnePositieSensor.obj
-	@echo ... zonnePositieSensor.i
-	@echo ... zonnePositieSensor.s
 .PHONY : help
 
 

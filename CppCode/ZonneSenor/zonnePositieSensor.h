@@ -2,7 +2,7 @@
 #define V1OOPC_EXAMPLES_ZONNEPOSITIESENSOR_H
 
 #include <array>
-#include "pythonConnection.h"
+#include "../../pythonConnection.h"
 
 class zonnePositieSensor {
 private:
