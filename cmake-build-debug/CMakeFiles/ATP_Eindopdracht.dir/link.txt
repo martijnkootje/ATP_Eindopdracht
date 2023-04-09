@@ -1,3 +1,0 @@
-"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\ATP_Eindopdracht.dir/objects.a
-C:\MinGW\w64devkit\bin\ar.exe cr CMakeFiles\ATP_Eindopdracht.dir/objects.a @CMakeFiles\ATP_Eindopdracht.dir\objects1.rsp
-C:\MinGW\w64devkit\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\ATP_Eindopdracht.dir/objects.a -Wl,--no-whole-archive -o ATP_Eindopdracht.exe -Wl,--out-implib,libATP_Eindopdracht.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\ATP_Eindopdracht.dir\linklibs.rsp

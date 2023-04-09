@@ -1,14 +1,14 @@
 #ifndef V1OOPC_EXAMPLES_ZONNEPOSITIESENSOR_H
 #define V1OOPC_EXAMPLES_ZONNEPOSITIESENSOR_H
-
 #include <array>
-#include "../../pythonConnection.h"
+
+
 
 class zonnePositieSensor {
 private:
-    pythonConnection & connection;
+
 public:
-    zonnePositieSensor(pythonConnection & python);
+    zonnePositieSensor();
 
     std::array<int, 5> inputSensorValues();
 

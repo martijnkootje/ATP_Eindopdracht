@@ -9,7 +9,7 @@ The output was:
 Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 4-4-2023 17:27:54.
+Build started 6-4-2023 17:12:49.
 Project "C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\build\CMakeFiles\3.22.5\CompilerIdC\CompilerIdC.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
@@ -35,7 +35,7 @@ Build succeeded.
     0 Warning(s)
     0 Error(s)
 
-Time Elapsed 00:00:01.25
+Time Elapsed 00:00:02.02
 
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -54,7 +54,7 @@ The output was:
 Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-Build started 4-4-2023 17:27:55.
+Build started 6-4-2023 17:12:52.
 Project "C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\build\CMakeFiles\3.22.5\CompilerIdCXX\CompilerIdCXX.vcxproj" on node 1 (default targets).
 PrepareForBuild:
   Creating directory "Debug\".
@@ -92,46 +92,28 @@ The CXX compiler identification is MSVC, found in "C:/Users/marti/Desktop/HBO-ic
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_89ff1.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_61771.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30145 for x64
   Copyright (C) Microsoft Corporation.  All rights reserved.
   CMakeCCompilerABI.c
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_89ff1.dir\Debug\\" /Fd"cmTC_89ff1.dir\Debug\vc142.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\Users\marti\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\cmake\data\share\cmake-3.22\Modules\CMakeCCompilerABI.c"
-  cmTC_89ff1.vcxproj -> C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\build\CMakeFiles\CMakeTmp\Debug\cmTC_89ff1.exe
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_61771.dir\Debug\\" /Fd"cmTC_61771.dir\Debug\vc142.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\Users\marti\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\cmake\data\share\cmake-3.22\Modules\CMakeCCompilerABI.c"
+  cmTC_61771.vcxproj -> C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\build\CMakeFiles\CMakeTmp\Debug\cmTC_61771.exe
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_830a6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_fc689.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
 Copyright (C) Microsoft Corporation. All rights reserved.
 
   Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30145 for x64
   Copyright (C) Microsoft Corporation.  All rights reserved.
   CMakeCXXCompilerABI.cpp
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_830a6.dir\Debug\\" /Fd"cmTC_830a6.dir\Debug\vc142.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\Users\marti\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\cmake\data\share\cmake-3.22\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_830a6.vcxproj -> C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\build\CMakeFiles\CMakeTmp\Debug\cmTC_830a6.exe
+  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_fc689.dir\Debug\\" /Fd"cmTC_fc689.dir\Debug\vc142.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\Users\marti\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\cmake\data\share\cmake-3.22\Modules\CMakeCXXCompilerABI.cpp"
+  cmTC_fc689.vcxproj -> C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\build\CMakeFiles\CMakeTmp\Debug\cmTC_fc689.exe
 
 
 
-Performing C++ SOURCE FILE Test HAS_MSVC_GL_LTCG succeeded with the following output:
-Change Dir: C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/CMakeFiles/CMakeTmp
-
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/MSBuild/Current/Bin/MSBuild.exe cmTC_79fec.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R) Build Engine version 16.11.2+f32259642 for .NET Framework
-Copyright (C) Microsoft Corporation. All rights reserved.
-
-  Microsoft (R) C/C++ Optimizing Compiler Version 19.29.30145 for x64
-  Copyright (C) Microsoft Corporation.  All rights reserved.
-  src.cxx
-  cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /GL /D _MBCS /D WIN32 /D _WINDOWS /D HAS_MSVC_GL_LTCG /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_79fec.dir\Debug\\" /Fd"cmTC_79fec.dir\Debug\vc142.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\build\CMakeFiles\CMakeTmp\src.cxx"
-LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification [C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\build\CMakeFiles\CMakeTmp\cmTC_79fec.vcxproj]
-  Generating code
-  Finished generating code
-  cmTC_79fec.vcxproj -> C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\build\CMakeFiles\CMakeTmp\Debug\cmTC_79fec.exe
-
-
-Source file was:
-int main() { return 0; }

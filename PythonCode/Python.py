@@ -1,3 +1,4 @@
-import example
+from zonneSensor import *
 
-print(example.add(1, 1))
+j = zonnePositieSensor()
+print(j.inputSensorValues())

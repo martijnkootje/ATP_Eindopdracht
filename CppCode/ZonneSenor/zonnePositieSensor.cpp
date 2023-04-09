@@ -1,8 +1,20 @@
 #include "zonnePositieSensor.h"
 #include <iostream>
-zonnePositieSensor::zonnePositieSensor(pythonConnection & python) : connection(python){
+#include "../../extern/pybind11/include/pybind11/pybind11.h"
+#include "../../extern/pybind11/include/pybind11/stl.h"
+namespace py = pybind11;
+
+zonnePositieSensor::zonnePositieSensor(){
 
 }
+
+using std::string;
+using std::array;
+using std::cout;
+using std::cin;
+using std::stoi;
+
+
 ///\brief Function to get sensor values from the command line
 std::array<int, 5> zonnePositieSensor::inputSensorValues() {
     std::cout << "voltage 1: ";
@@ -50,4 +62,12 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues() {
     //todo afmaken
 
     return std::array<int, 5> {1,2,3,4,5};
+}
+
+PYBIND11_MODULE(zonneSensor, m) {
+    m.doc() = "Zonnepositiesensor";
+    py::class_<zonnePositieSensor>(m, "zonnePositieSensor")
+        .def(py::init<>())
+        .def("inputSensorValues", &zonnePositieSensor::inputSensorValues, "Fill in input values for the sensor")
+        .def("inputAngleToSensorValues", &zonnePositieSensor::inputAngleToSensorValues, "Fill in 2 angles and this function returns 5 sensor values");
 }
