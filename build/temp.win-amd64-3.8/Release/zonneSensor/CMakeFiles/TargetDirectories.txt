@@ -1,4 +1,0 @@
-C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/zonneSensor.dir
-C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/ALL_BUILD.dir
-C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/ZERO_CHECK.dir
-C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/extern/pybind11/CMakeFiles/ALL_BUILD.dir
