@@ -56,65 +56,65 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
         azimut += 360;
     }
 
-    int randomFactor = rand()% 40 + 1000;
+    float randomFactor = (rand()% 290 + 280) / 10;
     int highestSensor = 0;
     //s1 has highest value
-    if(azimut> 0 && azimut < 90){
+    if(azimut >= 0 && azimut <= 90){
         if(azimut <= 45){
-            sensors[0] = ((90-azimut)/90*100) * randomFactor;
-            sensors[3] = (azimut/90*100) *randomFactor;
-            sensors[1] = rand() % randomFactor;
-            sensors[2] = rand() % randomFactor;
+            sensors[0] = ((90-azimut)/90*100) * randomFactor + randomFactor;
+            sensors[3] = (azimut/90*100 + 2) *randomFactor + randomFactor;
+            sensors[1] = rand() % (int)randomFactor;
+            sensors[2] = rand() % (int)randomFactor;
         }else{
-            sensors[0] = (azimut/90*100) * randomFactor;
-            sensors[1] = ((90-azimut)/90*100) * randomFactor;
-            sensors[2] = rand() % randomFactor;
-            sensors[3] = rand() % randomFactor;
+            sensors[0] = (azimut/90*100) * randomFactor+ randomFactor;
+            sensors[1] = ((90-azimut)/90*100+2) * randomFactor+ randomFactor;
+            sensors[2] = rand() % (int)randomFactor;
+            sensors[3] = rand() % (int)randomFactor;
         }
-    }
+    }else
 
-    if(azimut> 90 && azimut < 180){
+    if(azimut >= 90 && azimut <= 180){
         highestSensor = 1;
         if(azimut <= 135){
-            sensors[1] = ((90-azimut/2)/90*100) * randomFactor;
-            sensors[0] = (azimut/2/90*100) *randomFactor;
-            sensors[2] = rand() % randomFactor;
-            sensors[3] = rand() % randomFactor;
+            sensors[1] = ((90-azimut/2)/90*100 + 2) * randomFactor+ randomFactor;
+            sensors[0] = (azimut/2/90*100) *randomFactor+ randomFactor;
+            sensors[2] = rand() % (int)randomFactor;
+            sensors[3] = rand() % (int)randomFactor;
         }else{
-            sensors[1] = ((90-azimut/2)/90*100) * randomFactor;
-            sensors[2] = (azimut/2/90*100) *randomFactor;
-            sensors[3] = rand() % randomFactor;
-            sensors[0] = rand() % randomFactor;
+            sensors[1] = ((90-azimut/2)/90*100+ 2) * randomFactor+ randomFactor;
+            sensors[2] = (azimut/2/90*100) *randomFactor+ randomFactor;
+            sensors[3] = rand() % (int)randomFactor;
+            sensors[0] = rand() % (int)randomFactor;
         }
-    }
+    }else
 
-    if(azimut> 180 && azimut < 270){
+    if(azimut >= 180 && azimut <= 270){
         highestSensor = 2;
         if(azimut < 225){
-            sensors[2] = ((90-azimut/3)/90*100) * randomFactor;
-            sensors[1] = (azimut/3/90*100) *randomFactor;
-            sensors[3] = rand() % randomFactor;
-            sensors[0] = rand() % randomFactor;
+            sensors[2] = ((90-azimut/3)/90*100+2) * randomFactor+ randomFactor;
+            sensors[1] = (azimut/3/90*100) *randomFactor+ randomFactor;
+            sensors[3] = rand() % (int)randomFactor;
+            sensors[0] = rand() % (int)randomFactor;
         }else{
-            sensors[3] = ((90-azimut/3)/90*100) * randomFactor;
-            sensors[2] = (azimut/3/90*100) *randomFactor;
-            sensors[0] = rand() % randomFactor;
-            sensors[1] = rand() % randomFactor;
+            sensors[3] = ((90-azimut/3)/90*100+2) * randomFactor+ randomFactor;
+            sensors[2] = (azimut/3/90*100) *randomFactor+ randomFactor;
+            sensors[0] = rand() % (int)randomFactor;
+            sensors[1] = rand() % (int)randomFactor;
         }
-    }
+    }else
 
-    if(azimut> 270 && azimut < 360){
+    if(azimut >= 270 && azimut <= 360){
         if(azimut < 315){
             highestSensor = 3;
-            sensors[3] = ((90-azimut/4)/90*100) * randomFactor;
-            sensors[2] = (azimut/4/90*100) *randomFactor;
-            sensors[0] = rand() % randomFactor;
-            sensors[1] = rand() % randomFactor;
+            sensors[3] = ((90-azimut/4)/90*100+2) * randomFactor+ randomFactor;
+            sensors[2] = (azimut/4/90*100) *randomFactor+ randomFactor;
+            sensors[0] = rand() % (int)randomFactor;
+            sensors[1] = rand() % (int)randomFactor;
         }else{
-            sensors[3] = ((90-azimut/4)/90*100) * randomFactor;
-            sensors[0] = (azimut/4/90*100) *randomFactor;
-            sensors[1] = rand() % randomFactor;
-            sensors[2] = rand() % randomFactor;
+            sensors[3] = ((90-azimut/4)/90*100+2) * randomFactor+ randomFactor;
+            sensors[0] = (azimut/4/90*100) *randomFactor+ randomFactor;
+            sensors[1] = rand() % (int)randomFactor;
+            sensors[2] = rand() % (int)randomFactor;
         }
     }
 
@@ -125,12 +125,12 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
     }
 
     if(elevatie < 45){
-        (90-elevatie)/90*100
-        sensors
-    }
+        sensors[4] = sensors[highestSensor] * (elevatie/100)+ randomFactor;
+    }else{
+        sensors[4] = sensors[highestSensor] * (90/elevatie)+ randomFactor;
+    } //todo sensorwaarden t zelfde als sensorboven
 
-
-    return std::array<int, 5> {1,2,3,4,5};
+    return sensors;
 }
 
 PYBIND11_MODULE(zonneSensor, m) {

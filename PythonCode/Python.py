@@ -69,6 +69,8 @@ def Mainloop():
         magnetoSensor.setMeasurement(int(currenthoekA)) #Give the sensor a angle it needs to simulate
         magnetoSensor.update()
 
+        print(zonneSensor.inputAngleToSensorValues(350, 35))
+
         zonnehoekA, zonnehoekE = updateZonneSensor(zonnehoekA, zonnehoekE)
 
         #verwerking azimut
@@ -76,7 +78,8 @@ def Mainloop():
         zonnewijzerhoekA = magnetoSensorValuesToAngle(x, y)
 
         currenthoekE = servo.getPosition()
-
+        #todo testen toevoegen die zonnesensor input invullen op sensor en uitkomende waarde testen
+        #todo test die invoerwaarden test (< 360 > 0
         if motor.status() == 1:
             if motor.direction == 1:
                 currenthoekA -= 1
