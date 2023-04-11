@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <pybind11/pybind11.h>
+#include <pybind11/stl.h>
 #include "magnetoSensor.h"
 #include "math.h"
 namespace py = pybind11;
@@ -24,14 +25,17 @@ void magnetoSensor::update() {
     int y = sin(radialen)*((float)60-gainy)*gain;
     int z = (rand() % 600) *((float)60-gainz)*gain; //z is not used for this project, so I cant simulate a real value
 
-    x2 = (int8_t) (x & 0xFF);
-    x1 = (int8_t) ((x >> 8) & 0xFF);
 
-    y2 = (int8_t) (y & 0xFF);
-    y1 = (int8_t) ((y >> 8) & 0xFF);
+    x2[0] = (int8_t) (x & 0xFF);
+    x1[0] = (int8_t) ((x >> 8) & 0xFF);
 
-    z2 = (int8_t) (z & 0xFF);
-    z1 = (int8_t) ((z >> 8) & 0xFF);
+    y2[0] = (int8_t) (y & 0xFF);
+    y1[0] = (int8_t) ((y >> 8) & 0xFF);
+
+    z2[0] = (int8_t) (z & 0xFF);
+    z1[0] = (int8_t) ((z >> 8) & 0xFF);
+
+//    std::cout << (int) x1[0] << "  " << (int) x2[0] << " " <<  (int) y1[0] << "  " << (int) y2[0] << std::endl;
 
     dataReady = true;
 
@@ -44,24 +48,22 @@ uint8_t magnetoSensor::I2C_readRegister(int address, int internalAddres) {
         return 0;
     }
     if(internalAddres ==  0x00) {
-        return x1;
+        return x1[0];
     }
     if(internalAddres ==  0x01) {
-        return x2;
+        return x2[0];
     }
-
     if(internalAddres == 0x02) {
-        return z1;
+        return z1[0];
     }
     if(internalAddres == 0x03) {
-        return z2;
+        return z2[0];
     }
-
     if(internalAddres == 0x04) {
-        return y1;
+        return y1[0];
     }
     if(internalAddres == 0x05) {
-        return y2;
+        return y2[0];
     }
     return 0;
 }
@@ -85,6 +87,22 @@ void magnetoSensor::setMeasueredValue(int angle) {
     measurement = angle;
 }
 
+signed short magnetoSensor::IntIntergration(std::array<uint8_t, 2> values){
+    return (signed short) (values[1] | (values[0] << 8));
+}
+
+std::array<short, 2> magnetoSensor::readSensorValuesAndConvertToShort(){
+    uint8_t X1 = I2C_readRegister(0x3d, 0x00);
+    uint8_t X2 = I2C_readRegister(0x3d, 0x01);
+    uint8_t Y1 = I2C_readRegister(0x3d, 0x04);
+    uint8_t Y2 = I2C_readRegister(0x3d, 0x05);
+
+    short x = IntIntergration({X1, X2});
+    short y = IntIntergration({Y1, Y2});
+
+    return {x, y};
+}
+
 PYBIND11_MODULE(magnetoSensor, m) {
     m.doc() = "magnetoSensor";
     py::class_<magnetoSensor>(m, "magnetoSensor")
@@ -92,5 +110,6 @@ PYBIND11_MODULE(magnetoSensor, m) {
         .def("setMeasurement", &magnetoSensor::setMeasueredValue, "Set the input angle, simulated by the sensor")
         .def("I2Cread", &magnetoSensor::I2C_readRegister, "Read registers from the sensor")
         .def("I2Cwrite", &magnetoSensor::I2C_writeRegister, "Write in the registers of the sensor")
-        .def("update", &magnetoSensor::update, "Do a 'new measurement', the sensor uses the angle set with 'setMeasurement'");
+        .def("update", &magnetoSensor::update, "Do a 'new measurement', the sensor uses the angle set with 'setMeasurement'")
+        .def("getConvertedSensorValues", &magnetoSensor::readSensorValuesAndConvertToShort, "Returns the already converted x and y value it got over I2C from the magneto sensor");
 }

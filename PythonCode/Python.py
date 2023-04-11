@@ -3,42 +3,42 @@ from magnetoSensor import *
 from servo import *
 from motor import *
 from cppFunctions import *
+import time
+import math
 
 zonneSensor = zonnePositieSensor()
 magnetoSensor = magnetoSensor()
 servo = Servo()
 motor = Motor()
 
-# print(zonneSensor.inputSensorValues())
-magnetoSensor.update()
-
 def updateZonneSensor(hoekA, hoekE):
-    hoekA += 1
+    hoekA += 0.1
     hoekE += 0.3
     return hoekA,hoekE
 
 def getMagnetoSensorValues():
-    sensorX = [0, 0]
-    sensorY = [0, 0]
-    print(type(sensorX))
-    sensorX[0] = magnetoSensor.I2Cread(0x3d, 0x00)
-    sensorX[1] = magnetoSensor.I2Cread(0x3d, 0x01)
-
-    sensorY[0] = magnetoSensor.I2Cread(0x3d, 0x02)
-    sensorY[1] = magnetoSensor.I2Cread(0x3d, 0x03)
-
-    x = SensorValueToInt(sensorX) #function in c++
-    y = SensorValueToInt(sensorY) #function in c++
-
+    lst = magnetoSensor.getConvertedSensorValues() #This is a function I would normally have written in python, read todo to see why it is in c++
+    x = lst[0]
+    y = lst[1]
     return x, y
 
-def updateServo(zonnehoekE, zonnewijzerhoekE):
+def magnetoSensorValuesToAngle(x, y):
+    direction = float(math.atan2(y, x))
+    if direction < 0:
+        direction += 2*math.pi
+    if direction > 2*math.pi:
+        direction -= 2*math.pi
+
+    return int(direction*180/math.pi)
+
+def updateServo(zonnewijzerhoekE, zonnehoekE):
     if not zonnehoekE == zonnewijzerhoekE:
-        servo.toPosition(zonnehoekE)
+        servo.toPosition(int(zonnehoekE))
 
 def updateMotor(zonnewijzerhoekA, zonnehoekA):
-    if zonnehoekA == zonnewijzerhoekA:
+    if zonnehoekA - zonnewijzerhoekA < 6 and zonnehoekA - zonnewijzerhoekA > -6:
         motor.turnOFF()
+        #todo led aan
         return
 
     if zonnehoekA < zonnewijzerhoekA:
@@ -56,20 +56,42 @@ def updateMotor(zonnewijzerhoekA, zonnehoekA):
 
 
 def Mainloop():
-    zonnehoekA = 0
-    zonnehoekE = 0
+    zonnehoekA = 25
+    zonnehoekE = 10
+    currenthoekA = 0
+    currenthoekE = 0
     zonnewijzerhoekA = 0
     zonnewijzerhoekE = 0
 
     while(True):
+        #updaten sensoren ivm simulatie
+        magnetoSensor.setMeasurement(int(currenthoekA)) #Give the sensor a angle it needs to simulate
+        magnetoSensor.update()
+
         zonnehoekA, zonnehoekE = updateZonneSensor(zonnehoekA, zonnehoekE)
+
+        #verwerking azimut
         x,y = getMagnetoSensorValues()
-        zonnewijzerhoekA = AzimutAngle(x,y) #function in c++
-        zonnewijzerhoekE = Servo.getPosition()
+        zonnewijzerhoekA = magnetoSensorValuesToAngle(x, y)
 
+        currenthoekE = servo.getPosition()
 
-        updateServo(zonnehoekE, zonnewijzerhoekE)
+        if motor.status() == 1:
+            if motor.direction == 1:
+                currenthoekA -= 1
+                if currenthoekA < 0:
+                    currenthoekA += 360
+            else:
+                currenthoekA += 1
+                if currenthoekA > 360:
+                    currenthoekA -= 360
+
+        updateServo(zonnewijzerhoekE, zonnehoekE)
         updateMotor(zonnewijzerhoekA, zonnehoekA)
+
+        print("hoek zon azimut: " + str(zonnehoekA), "hoek sensor azimut: " + str(zonnewijzerhoekA))
+        print("hoek zon elevatie: " + str(zonnehoekE), "hoek sensor elevatie: " + str(zonnewijzerhoekE) + "\n")
+        time.sleep(3)
 
 
 Mainloop()

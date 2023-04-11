@@ -20,16 +20,17 @@ private:
     //todo? measurementMode
 
     // 2 bytes, MSB+LSB, data output X
-    uint8_t x1 = 0;
-    uint8_t x2 = 0;
+    std::array<uint8_t, 1> x1 = {0};
+    std::array<uint8_t, 1> x2 = {0};
+//    int x = 0; //python doesn't have support for uint8_t or any other unsigned or short values
 
     // 2 bytes, MSB+LSB, data output Z
-    uint8_t z1 = 0;
-    uint8_t z2 = 0;
+    std::array<uint8_t, 1> y1 = {0};
+    std::array<uint8_t, 1> y2 = {0};
 
     // 2 bytes, MSB+LSB, data output Y (unused)
-    uint8_t y1 = 0;
-    uint8_t y2 = 0;
+    std::array<uint8_t, 1> z1 = {0};
+    std::array<uint8_t, 1> z2 = {0};
 
     int measurement = 0;
 
@@ -40,6 +41,10 @@ private:
     float gain = 1.1;
 
     bool dataReady = false; //dataReady bit, is high when a measurement is done, used in single measurement mode
+
+    int AzimutAngle(int x, int y);
+
+    signed short IntIntergration(std::array<uint8_t, 2> values);
 
 public:
     magnetoSensor();
@@ -52,6 +57,11 @@ public:
 
     ///Set the value of the angle(normally measured by the sensor)
     void setMeasueredValue(int angle);
+
+    ///Python doesn't have support for uints and different sizes of ints,
+    ///In this case it is easier to use c++ to convert the 8 bit unsigned sensor values to a 16+ bit signed int.
+    ///Python has no support for bit shifting too, to keep this software as functional as possible I prefer using c++ code instead of a library.
+    std::array<short, 2> readSensorValuesAndConvertToShort();
 
 };
 

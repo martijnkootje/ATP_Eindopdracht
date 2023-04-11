@@ -1,6 +1,7 @@
 #define _USE_MATH_DEFINES
 #include "math.h"
 #include "array"
+#include <iostream>
 #include "../extern/pybind11/include/pybind11/pybind11.h"
 #include "../extern/pybind11/include/pybind11/stl.h"
 namespace py = pybind11;
@@ -21,8 +22,10 @@ int AzimutAngle(int x, int y) {
     return (int)richting;
 }
 
-signed short IntIntergration(std::array<int8_t, 2> values){
-    return (signed short) (values[1] | (values[0] << 8));
+
+signed short IntIntergration(uint8_t value1, uint8_t value2){
+    std::cout << (int)value2 << " " << (int)value1 << " " << (signed short) (value2 | (value1 << 8)) <<std::endl;
+    return (signed short) (value2 | (value1 << 8));
 }
 
 
