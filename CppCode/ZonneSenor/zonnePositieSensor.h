@@ -12,7 +12,7 @@ public:
 
     std::array<int, 5> inputSensorValues();
 
-    std::array<int, 5> inputAngleToSensorValues();
+    std::array<int, 5> inputAngleToSensorValues(int azimut, int elevatie);
 
 };
 

@@ -46,20 +46,89 @@ std::array<int, 5> zonnePositieSensor::inputSensorValues() {
     return std::array<int, 5> {i1,i2,i3,i4,i5};
 }
 ///\brief Function that converts an x and y coordinate from the commandline to random sensor input voltages
-std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues() {
-    std::cout << "Geef een zonnepositie X: ";
-    std::string s1 = "";
-    std::cin >> s1;
+std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int elevatie){
 
-    std::cout << "\nGeef een zonnepositie Y: ";
-    std::string s2 = "";
-    std::cin >> s2;
-    std::cout << '\n';
+    std::array<int, 5> sensors;
 
-//    auto coords = {x, y};
+    if(azimut > 360){
+        azimut -= 360;
+    }else if(azimut < 0){
+        azimut += 360;
+    }
 
+    int randomFactor = rand()% 40 + 1000;
+    int highestSensor = 0;
+    //s1 has highest value
+    if(azimut> 0 && azimut < 90){
+        if(azimut <= 45){
+            sensors[0] = ((90-azimut)/90*100) * randomFactor;
+            sensors[3] = (azimut/90*100) *randomFactor;
+            sensors[1] = rand() % randomFactor;
+            sensors[2] = rand() % randomFactor;
+        }else{
+            sensors[0] = (azimut/90*100) * randomFactor;
+            sensors[1] = ((90-azimut)/90*100) * randomFactor;
+            sensors[2] = rand() % randomFactor;
+            sensors[3] = rand() % randomFactor;
+        }
+    }
 
-    //todo afmaken
+    if(azimut> 90 && azimut < 180){
+        highestSensor = 1;
+        if(azimut <= 135){
+            sensors[1] = ((90-azimut/2)/90*100) * randomFactor;
+            sensors[0] = (azimut/2/90*100) *randomFactor;
+            sensors[2] = rand() % randomFactor;
+            sensors[3] = rand() % randomFactor;
+        }else{
+            sensors[1] = ((90-azimut/2)/90*100) * randomFactor;
+            sensors[2] = (azimut/2/90*100) *randomFactor;
+            sensors[3] = rand() % randomFactor;
+            sensors[0] = rand() % randomFactor;
+        }
+    }
+
+    if(azimut> 180 && azimut < 270){
+        highestSensor = 2;
+        if(azimut < 225){
+            sensors[2] = ((90-azimut/3)/90*100) * randomFactor;
+            sensors[1] = (azimut/3/90*100) *randomFactor;
+            sensors[3] = rand() % randomFactor;
+            sensors[0] = rand() % randomFactor;
+        }else{
+            sensors[3] = ((90-azimut/3)/90*100) * randomFactor;
+            sensors[2] = (azimut/3/90*100) *randomFactor;
+            sensors[0] = rand() % randomFactor;
+            sensors[1] = rand() % randomFactor;
+        }
+    }
+
+    if(azimut> 270 && azimut < 360){
+        if(azimut < 315){
+            highestSensor = 3;
+            sensors[3] = ((90-azimut/4)/90*100) * randomFactor;
+            sensors[2] = (azimut/4/90*100) *randomFactor;
+            sensors[0] = rand() % randomFactor;
+            sensors[1] = rand() % randomFactor;
+        }else{
+            sensors[3] = ((90-azimut/4)/90*100) * randomFactor;
+            sensors[0] = (azimut/4/90*100) *randomFactor;
+            sensors[1] = rand() % randomFactor;
+            sensors[2] = rand() % randomFactor;
+        }
+    }
+
+    if(elevatie > 90){
+        elevatie -= 90;
+    }else if(elevatie < 0){
+        elevatie += 90;
+    }
+
+    if(elevatie < 45){
+        (90-elevatie)/90*100
+        sensors
+    }
+
 
     return std::array<int, 5> {1,2,3,4,5};
 }

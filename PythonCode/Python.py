@@ -11,6 +11,7 @@ magnetoSensor = magnetoSensor()
 servo = Servo()
 motor = Motor()
 
+#todo vervangen voor gebruik van zonnesenssor
 def updateZonneSensor(hoekA, hoekE):
     hoekA += 0.1
     hoekE += 0.3
