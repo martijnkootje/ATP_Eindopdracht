@@ -1,0 +1,10 @@
+^C:\USERS\MARTI\DESKTOP\HBO-ICT\ATP_EINDOPDRACHT\CMAKELISTS.TXT
+setlocal
+C:\Users\marti\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.8_qbz5n2kfra8p0\LocalCache\local-packages\Python38\site-packages\cmake\data\bin\cmake.exe -SC:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht -BC:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor --check-stamp-file C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

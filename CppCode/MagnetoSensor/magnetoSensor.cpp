@@ -41,9 +41,8 @@ void magnetoSensor::update() {
 uint8_t magnetoSensor::I2C_readRegister(int address, int internalAddres) {
 
     if(address != 0x3d){
-        return 0
+        return 0;
     }
-
     if(internalAddres ==  0x00) {
         return x1;
     }

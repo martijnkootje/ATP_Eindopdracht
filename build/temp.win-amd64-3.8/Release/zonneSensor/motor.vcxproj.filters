@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\CppCode\Motor\Motor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{40136AC7-9414-39C5-9B2E-7BB7E50F246E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
