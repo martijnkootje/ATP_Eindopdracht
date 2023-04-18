@@ -1,0 +1,7 @@
+"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - MinGW Makefiles" C:\Users\marti\Desktop\HBO-ict\ATP_Eindopdracht
+-- pybind11 v2.10.4 
+-- pybind11::lto disabled (problems with undefined symbols for MinGW for now)
+-- pybind11::thin_lto disabled (problems with undefined symbols for MinGW for now)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug

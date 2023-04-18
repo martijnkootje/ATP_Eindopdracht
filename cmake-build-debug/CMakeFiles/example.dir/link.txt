@@ -1,0 +1,3 @@
+"C:\Program Files\JetBrains\CLion 2021.2.1\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\example.dir/objects.a
+C:\MinGW\w64devkit\bin\ar.exe cr CMakeFiles\example.dir/objects.a @CMakeFiles\example.dir\objects1.rsp
+C:\MinGW\w64devkit\bin\g++.exe -g -shared -o example.cp310-win_amd64.pyd -Wl,--major-image-version,0,--minor-image-version,0 -Wl,--whole-archive CMakeFiles\example.dir/objects.a -Wl,--no-whole-archive @CMakeFiles\example.dir\linklibs.rsp

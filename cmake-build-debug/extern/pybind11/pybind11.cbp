@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="pybind11"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\extern\;CMake Files\extern\pybind11\;CMake Files\extern\pybind11\tools\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/extern/pybind11"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/extern/pybind11/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/extern/pybind11/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/extern/pybind11/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/extern/pybind11/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/extern/pybind11/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\extern\pybind11\"/>
+		</Unit>
+		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/extern/pybind11/tools/FindPythonLibsNew.cmake">
+			<Option virtualFolder="CMake Files\extern\pybind11\tools\"/>
+		</Unit>
+		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/extern/pybind11/tools/JoinPaths.cmake">
+			<Option virtualFolder="CMake Files\extern\pybind11\tools\"/>
+		</Unit>
+		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/extern/pybind11/tools/pybind11Common.cmake">
+			<Option virtualFolder="CMake Files\extern\pybind11\tools\"/>
+		</Unit>
+		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/extern/pybind11/tools/pybind11Tools.cmake">
+			<Option virtualFolder="CMake Files\extern\pybind11\tools\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
