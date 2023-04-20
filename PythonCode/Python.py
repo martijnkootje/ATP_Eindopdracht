@@ -32,6 +32,66 @@ def magnetoSensorValuesToAngle(x, y):
 
     return int(direction*180/math.pi)
 
+def zonneSensorValuestoAngles(sensoren):
+    max = sensoren[0]
+    index = 0
+
+    #calculate wich sensorvalue is highest
+    #todo veranderen in functioneel
+    for i in range(4): #the upside of the sensor doesn't count right now
+        if sensoren[i] > max:
+            if sensoren[i] < 1:
+                sensoren[i] = 1 #for the next calculation sensors cant be 0
+            max = sensoren[i]
+            index = i
+
+    elevatie = float(float(sensoren[4]) / (float(sensoren[index]) + float(sensoren[4])) * 90)
+    azimut = 0
+    print(sensoren, index)
+
+    #sensor 0 has the highest value
+    if index == 0:
+        if sensoren[index + 1] > sensoren[index + 3]:
+            sTot = float(sensoren[index] + sensoren[index + 1])
+            azimut = float(sensoren[index + 1]) / sTot * 90
+        else:
+            sTot = float(sensoren[index]) + float(sensoren[index + 3])
+            azimut = float(sensoren[index + 3]) / sTot * -90
+
+    #sensor 1 has the highest value
+    if index == 1:
+        if sensoren[index + 1] > sensoren[index - 1]:
+            sTot = sensoren[index] + sensoren[index + 1]
+            azimut = 90 + float(sensoren[index + 1]) / sTot * 90
+        else:
+            sTot = float(sensoren[index]) + float(sensoren[index - 1])
+            azimut = 90 - float(sensoren[index - 1]) / sTot * 90
+
+    #sensor 2 has the highest value
+    if index == 2:
+        if sensoren[index + 1] > sensoren[index - 1]:
+            sTot = sensoren[index] + sensoren[index + 1]
+            azimut = 180 + float(sensoren[index + 1]) / sTot * 90
+        else:
+            sTot = float(sensoren[index]) + float(sensoren[index - 1])
+            azimut = 180 - float(sensoren[index - 1]) / sTot * 90
+
+    #sensor 3 has the highest value
+    if index == 3:
+        if sensoren[0] > sensoren[index - 1]:
+            sTot = sensoren[index] + sensoren[0]
+            azimut = 270 + float(sensoren[0]) / sTot * 90
+        else:
+            sTot = float(sensoren[index]) + float(sensoren[index - 1])
+            azimut = 270 - float(sensoren[index - 1]) / sTot * 90
+
+    if azimut < 0:
+        azimut += 360
+    if azimut > 360:
+        azimut -= 360
+    return azimut, elevatie
+
+
 def updateServo(zonnewijzerhoekE, zonnehoekE):
     if not zonnehoekE == zonnewijzerhoekE:
         servo.toPosition(int(zonnehoekE))
@@ -57,29 +117,32 @@ def updateMotor(zonnewijzerhoekA, zonnehoekA):
 
 
 def Mainloop():
-    zonnehoekA = 25
-    zonnehoekE = 10
+    #values for the simulation
+    zonnehoekA = 45
+    zonnehoekE = 45
     currenthoekA = 0
     currenthoekE = 0
     zonnewijzerhoekA = 0
     zonnewijzerhoekE = 0
+    sensorvalues = []
 
     while(True):
         #updaten sensoren ivm simulatie
         magnetoSensor.setMeasurement(int(currenthoekA)) #Give the sensor a angle it needs to simulate
         magnetoSensor.update()
-
-        print(zonneSensor.inputAngleToSensorValues(350, 35))
-
         zonnehoekA, zonnehoekE = updateZonneSensor(zonnehoekA, zonnehoekE)
+        zonneSensor.setSunPosition(int(zonnehoekA), int(zonnehoekE)) #give the sensor a position of the sun to simulate
 
-        #verwerking azimut
+
+        #verkrijgen sensorwaarden
+        sensorvalues = zonneSensor.getADCvalues()
         x,y = getMagnetoSensorValues()
-        zonnewijzerhoekA = magnetoSensorValuesToAngle(x, y)
-
         currenthoekE = servo.getPosition()
-        #todo testen toevoegen die zonnesensor input invullen op sensor en uitkomende waarde testen
-        #todo test die invoerwaarden test (< 360 > 0
+        zonnewijzerhoekA = magnetoSensorValuesToAngle(x, y)
+        print(sensorvalues, int(zonnehoekA), int(zonnehoekE), zonneSensorValuestoAngles(sensorvalues))
+
+
+
         if motor.status() == 1:
             if motor.direction == 1:
                 currenthoekA -= 1
@@ -97,6 +160,31 @@ def Mainloop():
         print("hoek zon elevatie: " + str(zonnehoekE), "hoek sensor elevatie: " + str(zonnewijzerhoekE) + "\n")
         time.sleep(3)
 
+        #todo testen toevoegen die zonnesensor input invullen op sensor en uitkomende waarde testen
+        #todo test die invoerwaarden test (< 360 > 0
 
-Mainloop()
+def keuzemenu():
+    print("Zonnewijzer simulatie en test software. "
+          "\nOptie 1: voer de simulatie uit \nOptie 2: voer de tests uit \nOptie 3: exit")
+    choice = input("Geef een optie: ")
+    # try:
+    if int(choice) == 1:
+        Mainloop()
+    if int(choice) == 2:
+        pass
+    if int(choice) == 3:
+        return
+    # except:
+        print("Geef a.u.b. alleen een nummer")
 
+# keuzemenu()
+
+def testSunSensor(a, e):
+    zonneSensor.setSunPosition(a, e)
+    sensorvalues = zonneSensor.getADCvalues()
+    azi, ele = zonneSensorValuestoAngles(sensorvalues)
+    print(azi, ele)
+    assert (a - azi) < 5 and (a - azi) > -5, "expexted: " + str(a) + " got: " + str(azi) + "; Not the expected outcome"
+
+for i in range(10):
+    testSunSensor(110, 45)

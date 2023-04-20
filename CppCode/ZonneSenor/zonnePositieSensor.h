@@ -6,7 +6,8 @@
 
 class zonnePositieSensor {
 private:
-
+    int angleSunA = 0;
+    int angleSunE = 0;
 public:
     zonnePositieSensor();
 
@@ -14,6 +15,9 @@ public:
 
     std::array<int, 5> inputAngleToSensorValues(int azimut, int elevatie);
 
+    std::array<int, 5> getADCvalues();
+
+    void setCurrentSunPosition(int azimut, int elevatie);
 };
 
 

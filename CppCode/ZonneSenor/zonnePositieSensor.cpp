@@ -8,11 +8,11 @@ zonnePositieSensor::zonnePositieSensor(){
 
 }
 
-using std::string;
-using std::array;
-using std::cout;
-using std::cin;
-using std::stoi;
+//using std::string;
+//using std::array;
+//using std::cout;
+//using std::cin;
+//using std::stoi;
 
 
 ///\brief Function to get sensor values from the command line
@@ -56,18 +56,18 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
         azimut += 360;
     }
 
-    float randomFactor = (rand()% 290 + 280) / 10;
+    float randomFactor = (rand()% 290 + 283) / 10;
     int highestSensor = 0;
     //s1 has highest value
     if(azimut >= 0 && azimut <= 90){
         if(azimut <= 45){
-            sensors[0] = ((90-azimut)/90*100) * randomFactor + randomFactor;
-            sensors[3] = (azimut/90*100 + 2) *randomFactor + randomFactor;
-            sensors[1] = rand() % (int)randomFactor;
+            sensors[0] = (90.0-((float)azimut)/90.0*100+2) * randomFactor + randomFactor;
+            sensors[1] = (((float)azimut)/90.0*100+2) *randomFactor + randomFactor;
             sensors[2] = rand() % (int)randomFactor;
+            sensors[3] = rand() % (int)randomFactor;
         }else{
-            sensors[0] = (azimut/90*100) * randomFactor+ randomFactor;
-            sensors[1] = ((90-azimut)/90*100+2) * randomFactor+ randomFactor;
+            sensors[0] = (90.0-((float)azimut)/90.0*100+2) * randomFactor+ randomFactor;
+            sensors[1] = (((float)azimut)/90.0*100+2) * randomFactor+ randomFactor;
             sensors[2] = rand() % (int)randomFactor;
             sensors[3] = rand() % (int)randomFactor;
         }
@@ -76,13 +76,13 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
     if(azimut >= 90 && azimut <= 180){
         highestSensor = 1;
         if(azimut <= 135){
-            sensors[1] = ((90-azimut/2)/90*100 + 2) * randomFactor+ randomFactor;
-            sensors[0] = (azimut/2/90*100) *randomFactor+ randomFactor;
-            sensors[2] = rand() % (int)randomFactor;
+            sensors[1] = (90.0-((float)azimut-90.0)/90.0*100+2) * randomFactor + randomFactor;
+            sensors[2] = (((float)azimut-90.0)/90.0*100+2) *randomFactor+ randomFactor;
             sensors[3] = rand() % (int)randomFactor;
+            sensors[0] = rand() % (int)randomFactor;
         }else{
-            sensors[1] = ((90-azimut/2)/90*100+ 2) * randomFactor+ randomFactor;
-            sensors[2] = (azimut/2/90*100) *randomFactor+ randomFactor;
+            sensors[1] = (90.0-((float)azimut-90.0)/90.0*100+2) * randomFactor + randomFactor;
+            sensors[2] = (((float)azimut-90.0)/90.0*100+2) * randomFactor + randomFactor;
             sensors[3] = rand() % (int)randomFactor;
             sensors[0] = rand() % (int)randomFactor;
         }
@@ -91,13 +91,13 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
     if(azimut >= 180 && azimut <= 270){
         highestSensor = 2;
         if(azimut < 225){
-            sensors[2] = ((90-azimut/3)/90*100+2) * randomFactor+ randomFactor;
-            sensors[1] = (azimut/3/90*100) *randomFactor+ randomFactor;
-            sensors[3] = rand() % (int)randomFactor;
+            sensors[2] = (90.0-((float)azimut-180.0)/90.0*100+2) * randomFactor+ randomFactor;
+            sensors[3] = (((float)azimut-180.0)/90.0*100+2) *randomFactor+ randomFactor;
+            sensors[1] = rand() % (int)randomFactor;
             sensors[0] = rand() % (int)randomFactor;
         }else{
-            sensors[3] = ((90-azimut/3)/90*100+2) * randomFactor+ randomFactor;
-            sensors[2] = (azimut/3/90*100) *randomFactor+ randomFactor;
+            sensors[2] = (90.0-((float)azimut-180.0)/90.0*100+2) * randomFactor+ randomFactor;
+            sensors[3] = (((float)azimut-180.0)/90.0*100+2) *randomFactor+ randomFactor;
             sensors[0] = rand() % (int)randomFactor;
             sensors[1] = rand() % (int)randomFactor;
         }
@@ -106,13 +106,13 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
     if(azimut >= 270 && azimut <= 360){
         if(azimut < 315){
             highestSensor = 3;
-            sensors[3] = ((90-azimut/4)/90*100+2) * randomFactor+ randomFactor;
-            sensors[2] = (azimut/4/90*100) *randomFactor+ randomFactor;
-            sensors[0] = rand() % (int)randomFactor;
+            sensors[3] = (90.0-((float)azimut-270.0)/90.0*100+2) * randomFactor+ randomFactor;
+            sensors[0] = (((float)azimut-270.0)/90.0*100+2) *randomFactor+ randomFactor;
             sensors[1] = rand() % (int)randomFactor;
+            sensors[2] = rand() % (int)randomFactor;
         }else{
-            sensors[3] = ((90-azimut/4)/90*100+2) * randomFactor+ randomFactor;
-            sensors[0] = (azimut/4/90*100) *randomFactor+ randomFactor;
+            sensors[3] = (90.0-((float)azimut-270.0)/90.0*100+2) * randomFactor+ randomFactor;
+            sensors[0] = (((float)azimut-270.0)/90.0*100+2) *randomFactor+ randomFactor;
             sensors[1] = rand() % (int)randomFactor;
             sensors[2] = rand() % (int)randomFactor;
         }
@@ -130,7 +130,19 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
         sensors[4] = sensors[highestSensor] * (90/elevatie)+ randomFactor;
     } //todo sensorwaarden t zelfde als sensorboven
 
+    for(int i : sensors) {
+        std::cout<< "." << i << std::endl;
+    }
     return sensors;
+}
+
+std::array<int, 5> zonnePositieSensor::getADCvalues() {
+    return inputAngleToSensorValues(angleSunA, angleSunE);
+}
+
+void zonnePositieSensor::setCurrentSunPosition(int azimut, int elevatie) {
+    angleSunA = azimut;
+    angleSunE = elevatie;
 }
 
 PYBIND11_MODULE(zonneSensor, m) {
@@ -138,5 +150,7 @@ PYBIND11_MODULE(zonneSensor, m) {
     py::class_<zonnePositieSensor>(m, "zonnePositieSensor")
         .def(py::init<>())
         .def("inputSensorValues", &zonnePositieSensor::inputSensorValues, "Fill in input values for the sensor")
-        .def("inputAngleToSensorValues", &zonnePositieSensor::inputAngleToSensorValues, "Fill in 2 angles and this function returns 5 sensor values");
+        .def("inputAngleToSensorValues", &zonnePositieSensor::inputAngleToSensorValues, "Fill in 2 angles and this function returns 5 sensor values")
+        .def("getADCvalues", &zonnePositieSensor::getADCvalues, "Get the current sensor values from the ADC registers")
+        .def("setSunPosition", &zonnePositieSensor::setCurrentSunPosition, "Give the current position of the sun to the sensor(because of the simulation)");
 }
