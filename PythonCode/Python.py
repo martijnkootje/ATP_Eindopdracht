@@ -11,6 +11,15 @@ magnetoSensor = magnetoSensor()
 servo = Servo()
 motor = Motor()
 
+def logger(function):
+    def functie(*args, **kwargs):
+        tme = time.ctime()
+        result = function(*args, **kwargs)
+        print(str(tme) + "; Function: "+ function.__name__ + "; retrun value: "+ str(result) + "\n")
+        return result
+    return functie
+
+
 #todo vervangen voor gebruik van zonnesenssor
 def updateZonneSensor(hoekA, hoekE):
     hoekA += 0.1
@@ -32,20 +41,22 @@ def magnetoSensorValuesToAngle(x, y):
 
     return int(direction*180/math.pi)
 
+def highestValueIndex(sensoren, index=0,  max=0, highest=0):
+    if sensoren[index] > max:
+        if sensoren[index] < 1:
+            sensoren[index] = 1 #for the next calculation sensors cant be 0
+        max = sensoren[index]
+        highest = index
+    if index == 4:
+        return highest
+    return highestValueIndex(sensoren, index+1, max, highest)
+
+@logger
 def zonneSensorValuestoAngles(sensoren):
-    max = sensoren[0]
-    index = 0
-
     #calculate wich sensorvalue is highest
-    #todo veranderen in functioneel
-    for i in range(4): #the upside of the sensor doesn't count right now
-        if sensoren[i] > max:
-            if sensoren[i] < 1:
-                sensoren[i] = 1 #for the next calculation sensors cant be 0
-            max = sensoren[i]
-            index = i
+    index = highestValueIndex(sensoren)
 
-    elevatie = float(float(sensoren[4]) / (float(sensoren[index]) + float(sensoren[4])) * 90)
+    elevatie = float(sensoren[4]) / (float(sensoren[index]) + float(sensoren[4])) * 90
     azimut = 0
     print(sensoren, index)
 
@@ -177,7 +188,7 @@ def keuzemenu():
     # except:
         print("Geef a.u.b. alleen een nummer")
 
-# keuzemenu()
+keuzemenu()
 
 def testSunSensor(a, e):
     zonneSensor.setSunPosition(a, e)
@@ -186,5 +197,5 @@ def testSunSensor(a, e):
     print(azi, ele)
     assert (a - azi) < 5 and (a - azi) > -5, "expexted: " + str(a) + " got: " + str(azi) + "; Not the expected outcome"
 
-for i in range(10):
-    testSunSensor(110, 45)
+# for i in range(10):
+#     testSunSensor(110, 45)

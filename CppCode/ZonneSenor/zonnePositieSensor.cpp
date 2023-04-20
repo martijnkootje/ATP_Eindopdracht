@@ -8,13 +8,6 @@ zonnePositieSensor::zonnePositieSensor(){
 
 }
 
-//using std::string;
-//using std::array;
-//using std::cout;
-//using std::cin;
-//using std::stoi;
-
-
 ///\brief Function to get sensor values from the command line
 std::array<int, 5> zonnePositieSensor::inputSensorValues() {
     std::cout << "voltage 1: ";
@@ -45,6 +38,7 @@ std::array<int, 5> zonnePositieSensor::inputSensorValues() {
 
     return std::array<int, 5> {i1,i2,i3,i4,i5};
 }
+
 ///\brief Function that converts an x and y coordinate from the commandline to random sensor input voltages
 std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int elevatie){
 
@@ -64,12 +58,12 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
             sensors[0] = (90.0-((float)azimut)/90.0*100+2) * randomFactor + randomFactor;
             sensors[1] = (((float)azimut)/90.0*100+2) *randomFactor + randomFactor;
             sensors[2] = rand() % (int)randomFactor;
-            sensors[3] = rand() % (int)randomFactor;
+            sensors[3] = 1.5 * (rand() % (int)randomFactor);
         }else{
             sensors[0] = (90.0-((float)azimut)/90.0*100+2) * randomFactor+ randomFactor;
             sensors[1] = (((float)azimut)/90.0*100+2) * randomFactor+ randomFactor;
             sensors[2] = rand() % (int)randomFactor;
-            sensors[3] = rand() % (int)randomFactor;
+            sensors[3] = 1.5 * (rand() % (int)randomFactor);
         }
     }else
 
@@ -79,12 +73,12 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
             sensors[1] = (90.0-((float)azimut-90.0)/90.0*100+2) * randomFactor + randomFactor;
             sensors[2] = (((float)azimut-90.0)/90.0*100+2) *randomFactor+ randomFactor;
             sensors[3] = rand() % (int)randomFactor;
-            sensors[0] = rand() % (int)randomFactor;
+            sensors[0] = 1.5 * (rand() % (int)randomFactor);
         }else{
             sensors[1] = (90.0-((float)azimut-90.0)/90.0*100+2) * randomFactor + randomFactor;
             sensors[2] = (((float)azimut-90.0)/90.0*100+2) * randomFactor + randomFactor;
             sensors[3] = rand() % (int)randomFactor;
-            sensors[0] = rand() % (int)randomFactor;
+            sensors[0] = 1.5 * (rand() % (int)randomFactor);
         }
     }else
 
@@ -93,13 +87,13 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
         if(azimut < 225){
             sensors[2] = (90.0-((float)azimut-180.0)/90.0*100+2) * randomFactor+ randomFactor;
             sensors[3] = (((float)azimut-180.0)/90.0*100+2) *randomFactor+ randomFactor;
-            sensors[1] = rand() % (int)randomFactor;
+            sensors[1] = 1.5 * (rand() % (int)randomFactor);
             sensors[0] = rand() % (int)randomFactor;
         }else{
             sensors[2] = (90.0-((float)azimut-180.0)/90.0*100+2) * randomFactor+ randomFactor;
             sensors[3] = (((float)azimut-180.0)/90.0*100+2) *randomFactor+ randomFactor;
             sensors[0] = rand() % (int)randomFactor;
-            sensors[1] = rand() % (int)randomFactor;
+            sensors[1] = 1.5 * (rand() % (int)randomFactor);
         }
     }else
 
@@ -108,12 +102,12 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
             highestSensor = 3;
             sensors[3] = (90.0-((float)azimut-270.0)/90.0*100+2) * randomFactor+ randomFactor;
             sensors[0] = (((float)azimut-270.0)/90.0*100+2) *randomFactor+ randomFactor;
-            sensors[1] = rand() % (int)randomFactor;
+            sensors[1] = 1.5 * (rand() % (int)randomFactor);
             sensors[2] = rand() % (int)randomFactor;
         }else{
             sensors[3] = (90.0-((float)azimut-270.0)/90.0*100+2) * randomFactor+ randomFactor;
             sensors[0] = (((float)azimut-270.0)/90.0*100+2) *randomFactor+ randomFactor;
-            sensors[1] = rand() % (int)randomFactor;
+            sensors[1] = 1.5 * (rand() % (int)randomFactor);
             sensors[2] = rand() % (int)randomFactor;
         }
     }
@@ -125,9 +119,9 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
     }
 
     if(elevatie < 45){
-        sensors[4] = sensors[highestSensor] * (elevatie/100)+ randomFactor;
+        sensors[4] = sensors[highestSensor] * (elevatie/100)+ randomFactor/3;
     }else{
-        sensors[4] = sensors[highestSensor] * (90/elevatie)+ randomFactor;
+        sensors[4] = sensors[highestSensor] * (90/elevatie)+ randomFactor/3;
     } //todo sensorwaarden t zelfde als sensorboven
 
     for(int i : sensors) {
