@@ -124,9 +124,6 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
         sensors[4] = sensors[highestSensor] * (90/elevatie)+ randomFactor/3;
     } //todo sensorwaarden t zelfde als sensorboven
 
-    for(int i : sensors) {
-        std::cout<< "." << i << std::endl;
-    }
     return sensors;
 }
 

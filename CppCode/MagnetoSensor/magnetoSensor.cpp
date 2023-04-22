@@ -107,7 +107,7 @@ PYBIND11_MODULE(magnetoSensor, m) {
     m.doc() = "magnetoSensor";
     py::class_<magnetoSensor>(m, "magnetoSensor")
         .def(py::init<>())
-        .def("setMeasurement", &magnetoSensor::setMeasueredValue, "Set the input angle, simulated by the sensor")
+        .def("setCurrentPosition", &magnetoSensor::setMeasueredValue, "Set the input angle, simulated by the sensor")
         .def("I2Cread", &magnetoSensor::I2C_readRegister, "Read registers from the sensor")
         .def("I2Cwrite", &magnetoSensor::I2C_writeRegister, "Write in the registers of the sensor")
         .def("update", &magnetoSensor::update, "Do a 'new measurement', the sensor uses the angle set with 'setMeasurement'")

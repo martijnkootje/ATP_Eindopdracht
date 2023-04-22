@@ -19,6 +19,17 @@ def logger(function):
         return result
     return functie
 
+def timer(function):
+    def functie(*args, **kwargs):
+        tme = time.ctime()
+        start = time.time_ns()
+        result = function(*args, **kwargs)
+        stop = time.time_ns()
+        total = (stop-start)/1000
+        print(str(tme) + "; Function: "+ function.__name__ + "; Runtime: "+ str(total) + "\n")
+        return result
+    return functie
+
 
 #todo vervangen voor gebruik van zonnesenssor
 def updateZonneSensor(hoekA, hoekE):
@@ -41,6 +52,7 @@ def magnetoSensorValuesToAngle(x, y):
 
     return int(direction*180/math.pi)
 
+@timer
 def highestValueIndex(sensoren, index=0,  max=0, highest=0):
     if sensoren[index] > max:
         if sensoren[index] < 1:
@@ -131,27 +143,22 @@ def Mainloop():
     #values for the simulation
     zonnehoekA = 45
     zonnehoekE = 45
-    currenthoekA = 0
-    currenthoekE = 0
-    zonnewijzerhoekA = 0
-    zonnewijzerhoekE = 0
-    sensorvalues = []
 
     while(True):
         #updaten sensoren ivm simulatie
-        magnetoSensor.setMeasurement(int(currenthoekA)) #Give the sensor a angle it needs to simulate
+        magnetoSensor.setCurrentPosition(int(currenthoekA)) #Give the sensor a angle it needs to simulate
         magnetoSensor.update()
         zonnehoekA, zonnehoekE = updateZonneSensor(zonnehoekA, zonnehoekE)
         zonneSensor.setSunPosition(int(zonnehoekA), int(zonnehoekE)) #give the sensor a position of the sun to simulate
 
 
-        #verkrijgen sensorwaarden
+        #uitlezen sensorwaarden
         sensorvalues = zonneSensor.getADCvalues()
         x,y = getMagnetoSensorValues()
         currenthoekE = servo.getPosition()
-        zonnewijzerhoekA = magnetoSensorValuesToAngle(x, y)
-        print(sensorvalues, int(zonnehoekA), int(zonnehoekE), zonneSensorValuestoAngles(sensorvalues))
 
+        zonnewijzerhoekA = magnetoSensorValuesToAngle(x, y)
+        zonneStandA, zonneStandE = zonneSensorValuestoAngles(sensorvalues)
 
 
         if motor.status() == 1:
@@ -190,12 +197,6 @@ def keuzemenu():
 
 keuzemenu()
 
-def testSunSensor(a, e):
-    zonneSensor.setSunPosition(a, e)
-    sensorvalues = zonneSensor.getADCvalues()
-    azi, ele = zonneSensorValuestoAngles(sensorvalues)
-    print(azi, ele)
-    assert (a - azi) < 5 and (a - azi) > -5, "expexted: " + str(a) + " got: " + str(azi) + "; Not the expected outcome"
 
 # for i in range(10):
 #     testSunSensor(110, 45)
