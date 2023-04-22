@@ -50,7 +50,7 @@ std::array<int, 5> zonnePositieSensor::inputAngleToSensorValues(int azimut, int 
         azimut += 360;
     }
 
-    float randomFactor = (rand()% 290 + 283) / 10;
+    float randomFactor = (rand()% 290 + 288) / 10.0;
     int highestSensor = 0;
     //s1 has highest value
     if(azimut >= 0 && azimut <= 90){

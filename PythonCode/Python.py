@@ -15,7 +15,7 @@ def logger(function):
     def functie(*args, **kwargs):
         tme = time.ctime()
         result = function(*args, **kwargs)
-        print(str(tme) + "; Function: "+ function.__name__ + "; retrun value: "+ str(result) + "\n")
+        print(str(tme) + "; Function: "+ function.__name__ + "; retrun value: ")#+ str(result) + "\n"
         return result
     return functie
 
@@ -30,8 +30,6 @@ def timer(function):
         return result
     return functie
 
-
-#todo vervangen voor gebruik van zonnesenssor
 def updateZonneSensor(hoekA, hoekE):
     hoekA += 0.1
     hoekE += 0.3
@@ -52,7 +50,6 @@ def magnetoSensorValuesToAngle(x, y):
 
     return int(direction*180/math.pi)
 
-@timer
 def highestValueIndex(sensoren, index=0,  max=0, highest=0):
     if sensoren[index] > max:
         if sensoren[index] < 1:
@@ -63,14 +60,12 @@ def highestValueIndex(sensoren, index=0,  max=0, highest=0):
         return highest
     return highestValueIndex(sensoren, index+1, max, highest)
 
-@logger
 def zonneSensorValuestoAngles(sensoren):
     #calculate wich sensorvalue is highest
     index = highestValueIndex(sensoren)
 
     elevatie = float(sensoren[4]) / (float(sensoren[index]) + float(sensoren[4])) * 90
     azimut = 0
-    print(sensoren, index)
 
     #sensor 0 has the highest value
     if index == 0:
@@ -194,9 +189,3 @@ def keuzemenu():
         return
     # except:
         print("Geef a.u.b. alleen een nummer")
-
-keuzemenu()
-
-
-# for i in range(10):
-#     testSunSensor(110, 45)

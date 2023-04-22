@@ -1,10 +1,11 @@
+import random
 import unittest
 from zonneSensor import *
 from magnetoSensor import *
 from servo import *
 from motor import *
 from cppFunctions import *
-
+import Python
 
 # class NegativeNotHandledTester(object):
 #     def __init__(self, function):
@@ -88,19 +89,50 @@ class TestSensorFunctions(unittest.TestCase):
             self.assertTrue(False)
 
 #integratie tests #toedoe toevoegen document en wiki
-class TestSensoren():
+class TestSensoren(unittest.TestCase):
 
-def testSunSensor(a, e):
-    zonneSensor.setSunPosition(a, e)
-    sensorvalues = zonneSensor.getADCvalues()
-    azi, ele = zonneSensorValuestoAngles(sensorvalues)
-    assert (a - azi) < 5 and (a - azi) > -5, "expexted: " + str(a) + " got: " + str(azi) + "; Not the expected outcome"
-    return "Test passed"
-#todo allerlei waarden tesen, uiterste en errorgevoelige
+    #testing the import of c++ modules in python before running tests with them
+    def test_cpp_includes(self):
+        zonneSensor = zonnePositieSensor()
+        magneto = magnetoSensor()
+        servo = Servo()
+        motor = Motor()
 
-def testMagnetoSensor(a):
-    magnetoSensor.setCurrentPosition(int(currenthoekA)) #Give the sensor a angle it needs to simulate
-    magnetoSensor.update()
-    x,y = getMagnetoSensorValues()
-    #assert ....#todo
-    return "Test passed"
+        self.assertIsInstance(zonneSensor, zonnePositieSensor)
+        self.assertIsInstance(magneto, magnetoSensor)
+        self.assertIsInstance(servo, Servo)
+        self.assertIsInstance(motor, Motor)
+
+    #Testing the working of the magnetosensor(simulator) and functions that calculate the angles from the sensor values
+    def ZonneSensor(self, zonneSensor, a, e):
+        zonneSensor.setSunPosition(a, e)
+        sensorvalues = zonneSensor.getADCvalues()
+        azi, ele = Python.zonneSensorValuestoAngles(sensorvalues)
+        return ((a - azi) < 12 and (a - azi) > -12) and ((e - ele) < 6 and (e - ele) > -6)
+
+    def test_zonne_sensor_normal_values(self):
+        zonneSensor = zonnePositieSensor()
+        result = []
+        for a in range(360):
+            e = int(a/4)
+            result.append(self.ZonneSensor(zonneSensor, a, e))
+        print(result)
+        self.assertTrue(min(result) == 1)
+
+    #Testing the working of the magnetosensor(simulator) and functions that calculate the angles from the sensor values
+    def MagnetoSensor(self, magneto, a):
+        magneto.setCurrentPosition(int(a)) #Give the sensor a angle it needs to simulate
+        magneto.update()
+        x,y = Python.getMagnetoSensorValues()
+        azimut = Python.magnetoSensorValuesToAngle(x,y)
+        return (((a - azimut) < 12 and (a - azimut) > -12))
+
+    def testMagnetoSensor(self):
+        magneto = magnetoSensor()
+        result = []
+        for a in range(360):
+            result.append(self.MagnetoSensor(magneto, a))
+        print(result)
+        self.assertTrue(min(result) == 1)
+
+#todo systeemtest
