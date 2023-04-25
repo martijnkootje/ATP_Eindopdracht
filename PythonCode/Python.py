@@ -5,12 +5,15 @@ from motor import *
 from cppFunctions import *
 import time
 import math
+import matplotlib.pyplot as plt
 
+#Pybind11 imported classes
 zonneSensor = zonnePositieSensor()
 magnetoSensor = magnetoSensor()
 servo = Servo()
 motor = Motor()
 
+#not working decorator for testing functions with extreme and negative values
 # class NegativeNotHandledTester(object):
 #     def __init__(self, function):
 #         self.function = function
@@ -32,7 +35,7 @@ motor = Motor()
 
 # print(hh(3, 2))
 
-
+#Logger decorator, logs the function name and return value
 def logger(function):
     def functie(*args, **kwargs):
         tme = time.ctime()
@@ -41,26 +44,35 @@ def logger(function):
         return result
     return functie
 
+#Timer decorator, logs the time a function took to run in milisecs
 def timer(function):
     def functie(*args, **kwargs):
         tme = time.ctime()
         start = time.time_ns()
         result = function(*args, **kwargs)
         stop = time.time_ns()
-        total = (stop-start)/1000
+        total = (stop-start)/1000000
         print(str(tme) + "; Function: "+ function.__name__ + "; Runtime: "+ str(total) + "\n")
         return result
     return functie
 
-def updateZonneSensor(hoekA, hoekE):
-    hoekA += 0.1
-    hoekE += 0.3
+#todo labda
+def updateZonneSensor(hoekA, hoekE, positive):
+    if positive:
+        hoekA += 1.6
+        hoekE += 0.4
+    else:
+        hoekA -= 1.6
+        hoekE -= 0.4
     return hoekA, hoekE
 
+#Get the mangnetosensor values from the simulated sensor
 def getMagnetoSensorValues():
-    x, y = magnetoSensor.getConvertedSensorValues() #This is a function I would normally have written in python, read todo to see why it is in c++
+    x, y = magnetoSensor.getConvertedSensorValues() #This is a function I would normally have written in python,
+                                                    # read choise 1 in the attached document to see why it is in c++
     return x, y
 
+#This function converts the x and y value, obtained from te sensor, to an elevation agle
 def magnetoSensorValuesToAngle(x, y):
     direction = float(math.atan2(y, x))
     if direction < 0:
@@ -70,16 +82,18 @@ def magnetoSensorValuesToAngle(x, y):
 
     return int(direction*180/math.pi)
 
+#Recursive function that returns the index of the highst value in a list
 def highestValueIndex(sensoren, index=0,  max=0, highest=0):
     if sensoren[index] > max:
         if sensoren[index] < 1:
             sensoren[index] = 1 #for the next calculation sensors cant be 0
         max = sensoren[index]
         highest = index
-    if index == 4: #above sensor
+    if index == 3: #above sensor
         return highest
     return highestValueIndex(sensoren, index+1, max, highest)
 
+#Convert the 5 sensor values to an azimut and elevation angle
 def zonneSensorValuestoAngles(sensoren):
     #calculate wich sensorvalue is highest
     index = highestValueIndex(sensoren)
@@ -130,24 +144,20 @@ def zonneSensorValuestoAngles(sensoren):
         azimut -= 360
     return azimut, elevatie
 
-#verpl. mainloop
-def updateServo(sunPositionE):
-    servo.toPosition(int(sunAngleE))
-
-def updateMotor(currentPositionA, sunPositionA):
+def motorDirectionAndState(currentPositionA, sunPositionA):
     state = False
     direction = False
 
-    if zonnehoekA - currentPositionA < 6 and zonnehoekA - currentPositionA > -6:
+    if sunPositionA - currentPositionA < 1 and sunPositionA - currentPositionA > -1:
         state = False
-    elif zonnehoekA < currentPositionA:
-        if (zonnehoekA - currentPositionA) < 180:
+    elif sunPositionA < currentPositionA:
+        if (sunPositionA - currentPositionA) < 180:
             direction = True
         else:
             direction = False
         state = True
     else:
-        if (zonnehoekA - currentPositionA) < 180:
+        if (sunPositionA - currentPositionA) < 180:
             direction = False
         else:
             direction = True
@@ -155,11 +165,11 @@ def updateMotor(currentPositionA, sunPositionA):
     return state, direction
 
 #Updating sensor values (because of the simulation) !!This function is not functional!!
-def updateSensors(currentA, currentE, currentPositionA, currentPositionE):
+def updateSensors(currentA, currentE, currentPositionA, currentPositionE, positive):
     magnetoSensor.setCurrentPosition(int(currentPositionA))
     magnetoSensor.update()
 
-    nextPositionA, nextPositionE = updateZonneSensor(currentA, currentE) #todo labda
+    nextPositionA, nextPositionE = updateZonneSensor(currentA, currentE, positive)
     zonneSensor.setSunPosition(int(nextPositionA), int(nextPositionE))
     return nextPositionA, nextPositionE
 
@@ -167,50 +177,61 @@ def updateSensors(currentA, currentE, currentPositionA, currentPositionE):
 def readSensorValues():
     sensorvalues = zonneSensor.getADCvalues()
     magnetoX, magnetoY = getMagnetoSensorValues()
-    currentAngleE = servo.getPosition()
-    return sensorvalues, currentAngleE, magnetoX, magnetoY
+    return sensorvalues, magnetoX, magnetoY
 
-def Mainloop(currentA=0, currentE=0, currentSunPointerA=0, currentSunPointerE=0):
-    currentA, currentE = updateSensors(currentA, currentE, currentSunPointerA, currentSunPointerE)
+def Mainloop(lst=[[],[],[],[]], currentA=40, currentE=10, currentSunPointerA=0, currentSunPointerE=0, positive=True):
+
     if motor.status() == 1:
-        if motor.direction == 1:
-            currentA -= 1
+        if motor.direction() == 1:
+            currentSunPointerA -= 2
         else:
-            currentA += 1
+            currentSunPointerA += 2
 
-    sensorValues, currentAngleE, magnetoX, magnetoY = readSensorValues()
+    if currentSunPointerA < 0:
+        currentSunPointerA += 360
+
+    if currentE < 1 or currentA < 1 or currentA > 356 or currentE > 88:
+        positive = not positive
+
+    currentA, currentE = updateSensors(currentA, currentE, currentSunPointerA, currentSunPointerE, positive)
+
+    sensorValues, magnetoX, magnetoY = readSensorValues()
 
     #Calculate the azimut and elevation agle from the values of the sunpositionsensor and the magnetosensor
-    currentSunPointerA = magnetoSensorValuesToAngle(magnetoX, magnetoY)
-    currentSunPointerE = currentAngleE
+    magnetoA = magnetoSensorValuesToAngle(magnetoX, magnetoY)
     sunPositionA, sunPositionE = zonneSensorValuestoAngles(sensorValues)
+    state, direction = motorDirectionAndState(magnetoA, sunPositionA)
 
-    updateMotor(currentSunPointerA, sunPositionA)
-    updateServo(sunPositionE)
+    #update servo
+    servo.toPosition(int(sunPositionE))
+    currentSunPointerE = sunPositionE
 
-    print("hoek zon azimut: " + str(zonnehoekA), "hoek sensor azimut: " + str(zonnewijzerhoekA))
-    print("hoek zon elevatie: " + str(zonnehoekE), "hoek sensor elevatie: " + str(zonnewijzerhoekE) + "\n")
-    time.sleep(3)
-    return Mainloop(currentA, currentE, currentSunPointerA, currentSunPointerE)
-    #todo recusrief maken en afmaken
+    #update motor direction and state
+    motor.setDirection(direction)
+    if state:
+        motor.turnON()
+        #todo led off
+    else:
+        motor.turnOFF
+        #todo led on
 
-def keuzemenu():
-    print("Zonnewijzer simulatie en test software. "
-          "\nOptie 1: voer de simulatie uit \nOptie 2: voer de tests uit \nOptie 3: exit")
-    choice = input("Geef een optie: ")
-    # try:
-    if int(choice) == 1:
-        Mainloop()
-    if int(choice) == 2:
-        pass
-    if int(choice) == 3:
-        return
-    # except:
-        print("Geef a.u.b. alleen een nummer")
-    #todo afmaken simulatie en plotten
-    #todo test voor logger en timer
-    #todo logger / timer over cpp functie
-    #todo map implementeren
-    #todo document en dumentatie
+    lst[0].append(int(currentSunPointerA))
+    lst[1].append(int(currentSunPointerE))
+    lst[2].append(int(currentA))
+    lst[3].append(int(currentE))
 
-keuzemenu()
+    if len(lst[0]) > 600:
+        return lst
+
+    return Mainloop(lst, currentA, currentE, currentSunPointerA, currentSunPointerE, positive)
+
+def RunSimulation():
+    result = Mainloop()
+    time = list(range(0, 601))
+    plt.plot(time, result[0])
+    plt.plot(time, result[1])
+    plt.plot(time, result[2])
+    plt.plot(time, result[3])
+    plt.show()
+
+RunSimulation()

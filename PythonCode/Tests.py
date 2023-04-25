@@ -47,7 +47,7 @@ class TestSensorFunctions(unittest.TestCase):
         self.assertEqual(result, 3)
 
     #   Test the calculation when sensor 4 (upper) has the highest value
-    def test_zonne_sensor_input_to_value_5degrees(self):
+    def test_zonne_sensor_input_to_value_90degrees_elevation(self):
         sensor = zonnePositieSensor()
         values = sensor.inputAngleToSensorValues(5, 90)
         result = values.index(max(values))
@@ -107,9 +107,9 @@ class TestSensors(unittest.TestCase):
         magneto.update()
         x,y = Python.getMagnetoSensorValues()
         azimut = Python.magnetoSensorValuesToAngle(x,y)
-        return (((a - azimut) < 12 and (a - azimut) > -12))
+        return (((a - azimut) < 5 and (a - azimut) > -5))
 
-    def test_Magneto_Sensor(self):
+    def test_magneto_sensor(self):
         magneto = magnetoSensor()
         result = []
         for a in range(360):
@@ -121,9 +121,26 @@ class TestSensors(unittest.TestCase):
 #System test
 class TestSystem(unittest.TestCase):
 
+    def TestLoop(self, result, i=0, lst = []):
+        if i == len(result):
+            return lst
+        if (result[0][i] - result[2][i]) > 3 or (result[0][i] - result[2][i]) < -3:
+            lst.append(0)
+            return self.TestLoop(result, i+1, lst)
+        if (result[1][i] - result[3][i]) > 3 or (result[1][i] - result[3][i]) < -3:
+            lst.append(0)
+            return self.TestLoop(result, i+1, lst)
+        lst.append(1)
+        return self.TestLoop(result, i+1, lst)
+
     #Test if the system does what it is suposed to do
-    def test_zonnewijzer(self):
-        pass
+    def test_sun_pointer(self):
+        result = Python.Mainloop()
+        testresult = self.TestLoop(result)
+        score = sum(testresult)
+        self.assertGreater(score, (len(testresult)*0.8))
+
+
 
 
 #todo systeemtest
