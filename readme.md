@@ -6,3 +6,10 @@ Builden van de python packages:
 
 Testrapport: https://github.com/martijnkootje/ATP_Eindopdracht/blob/main/atp%20eindverslag.docx
 
+Decorator 1:
+https://github.com/martijnkootje/ATP_Eindopdracht/blob/510ca7b35b1f496a9b6e4519035aadee022920d0/PythonCode/Python.py#L39
+
+Decorator 2:
+https://github.com/martijnkootje/ATP_Eindopdracht/blob/510ca7b35b1f496a9b6e4519035aadee022920d0/PythonCode/Python.py#L48
+
+De mainloop en een paar andere functies zijn recursief geschreven, samen met de laaste paar tests
