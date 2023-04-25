@@ -139,9 +139,3 @@ class TestSystem(unittest.TestCase):
         testresult = self.TestLoop(result)
         score = sum(testresult)
         self.assertGreater(score, (len(testresult)*0.8))
-
-
-
-
-#todo systeemtest
-#todo unit tetst die de rest van de functies testen op extreme waardes
