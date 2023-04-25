@@ -7,28 +7,7 @@ from motor import *
 from cppFunctions import *
 import Python
 
-# class NegativeNotHandledTester(object):
-#     def __init__(self, function):
-#         self.function = function
-#
-#     def __call__(self, *args, **kwargs):
-#         for key in args:
-#             print(key)
-#         try:
-#             self.result = self.function(*args, **kwargs)
-#             return self.result
-#         except:
-#             raise AttributeError(f"fout")
 
-
-# @NegativeNotHandledTester
-# def hh(x, y):
-#     return x * y
-
-
-# print(hh(3, 2))
-
-#todo
 #unit tests
 #hiermee weet je dat de functies integerwarden accepteren(incliesf extreme waarden) zonder te crashen en dat aan de hand van
 #de ingevgeven hoek op alle kanten van de sensor de waarde simulatie in ieder geval de goede kant de goede waarde teruggeeft
@@ -88,8 +67,11 @@ class TestSensorFunctions(unittest.TestCase):
         except:
             self.assertTrue(False)
 
-#integratie tests #toedoe toevoegen document en wiki
-class TestSensoren(unittest.TestCase):
+
+#integration tests
+#For testing all functions in and around the sensors. Test cases will show if the
+#simulations and the functions that calculate values from the sensors work correctly
+class TestSensors(unittest.TestCase):
 
     #testing the import of c++ modules in python before running tests with them
     def test_cpp_includes(self):
@@ -127,7 +109,7 @@ class TestSensoren(unittest.TestCase):
         azimut = Python.magnetoSensorValuesToAngle(x,y)
         return (((a - azimut) < 12 and (a - azimut) > -12))
 
-    def testMagnetoSensor(self):
+    def test_Magneto_Sensor(self):
         magneto = magnetoSensor()
         result = []
         for a in range(360):
@@ -135,4 +117,14 @@ class TestSensoren(unittest.TestCase):
         print(result)
         self.assertTrue(min(result) == 1)
 
+
+#System test
+class TestSystem(unittest.TestCase):
+
+    #Test if the system does what it is suposed to do
+    def test_zonnewijzer(self):
+        pass
+
+
 #todo systeemtest
+#todo unit tetst die de rest van de functies testen op extreme waardes

@@ -11,6 +11,28 @@ magnetoSensor = magnetoSensor()
 servo = Servo()
 motor = Motor()
 
+# class NegativeNotHandledTester(object):
+#     def __init__(self, function):
+#         self.function = function
+#
+#     def __call__(self, *args, **kwargs):
+#         for key in args:
+#             print(key)
+#         try:
+#             self.result = self.function(*args, **kwargs)
+#             return self.result
+#         except:
+#             raise AttributeError(f"fout")
+
+
+# @NegativeNotHandledTester
+# def hh(x, y):
+#     return x * y
+
+
+# print(hh(3, 2))
+
+
 def logger(function):
     def functie(*args, **kwargs):
         tme = time.ctime()
@@ -33,12 +55,10 @@ def timer(function):
 def updateZonneSensor(hoekA, hoekE):
     hoekA += 0.1
     hoekE += 0.3
-    return hoekA,hoekE
+    return hoekA, hoekE
 
 def getMagnetoSensorValues():
-    lst = magnetoSensor.getConvertedSensorValues() #This is a function I would normally have written in python, read todo to see why it is in c++
-    x = lst[0]
-    y = lst[1]
+    x, y = magnetoSensor.getConvertedSensorValues() #This is a function I would normally have written in python, read todo to see why it is in c++
     return x, y
 
 def magnetoSensorValuesToAngle(x, y):
@@ -56,7 +76,7 @@ def highestValueIndex(sensoren, index=0,  max=0, highest=0):
             sensoren[index] = 1 #for the next calculation sensors cant be 0
         max = sensoren[index]
         highest = index
-    if index == 4:
+    if index == 4: #above sensor
         return highest
     return highestValueIndex(sensoren, index+1, max, highest)
 
@@ -103,78 +123,76 @@ def zonneSensorValuestoAngles(sensoren):
             sTot = float(sensoren[index]) + float(sensoren[index - 1])
             azimut = 270 - float(sensoren[index - 1]) / sTot * 90
 
+    #making sure values are not negative or higher than 360
     if azimut < 0:
         azimut += 360
     if azimut > 360:
         azimut -= 360
     return azimut, elevatie
 
+#verpl. mainloop
+def updateServo(sunPositionE):
+    servo.toPosition(int(sunAngleE))
 
-def updateServo(zonnewijzerhoekE, zonnehoekE):
-    if not zonnehoekE == zonnewijzerhoekE:
-        servo.toPosition(int(zonnehoekE))
+def updateMotor(currentPositionA, sunPositionA):
+    state = False
+    direction = False
 
-def updateMotor(zonnewijzerhoekA, zonnehoekA):
-    if zonnehoekA - zonnewijzerhoekA < 6 and zonnehoekA - zonnewijzerhoekA > -6:
-        motor.turnOFF()
-        #todo led aan
-        return
-
-    if zonnehoekA < zonnewijzerhoekA:
-        if (zonnehoekA - zonnewijzerhoekA) < 180:
-            motor.setDirection(1)
+    if zonnehoekA - currentPositionA < 6 and zonnehoekA - currentPositionA > -6:
+        state = False
+    elif zonnehoekA < currentPositionA:
+        if (zonnehoekA - currentPositionA) < 180:
+            direction = True
         else:
-            motor.setDirection(0)
-
-    if zonnehoekA > zonnewijzerhoekA:
-        if (zonnehoekA - zonnewijzerhoekA) < 180:
-            motor.setDirection(0)
+            direction = False
+        state = True
+    else:
+        if (zonnehoekA - currentPositionA) < 180:
+            direction = False
         else:
-            motor.setDirection(1)
-    motor.turnON()
+            direction = True
+        state = True
+    return state, direction
 
+#Updating sensor values (because of the simulation) !!This function is not functional!!
+def updateSensors(currentA, currentE, currentPositionA, currentPositionE):
+    magnetoSensor.setCurrentPosition(int(currentPositionA))
+    magnetoSensor.update()
 
-def Mainloop():
-    #values for the simulation
-    zonnehoekA = 45
-    zonnehoekE = 45
+    nextPositionA, nextPositionE = updateZonneSensor(currentA, currentE) #todo labda
+    zonneSensor.setSunPosition(int(nextPositionA), int(nextPositionE))
+    return nextPositionA, nextPositionE
 
-    while(True):
-        #updaten sensoren ivm simulatie
-        magnetoSensor.setCurrentPosition(int(currenthoekA)) #Give the sensor a angle it needs to simulate
-        magnetoSensor.update()
-        zonnehoekA, zonnehoekE = updateZonneSensor(zonnehoekA, zonnehoekE)
-        zonneSensor.setSunPosition(int(zonnehoekA), int(zonnehoekE)) #give the sensor a position of the sun to simulate
+#Read all sensorvalues from the sensors !!This function is not functional!!
+def readSensorValues():
+    sensorvalues = zonneSensor.getADCvalues()
+    magnetoX, magnetoY = getMagnetoSensorValues()
+    currentAngleE = servo.getPosition()
+    return sensorvalues, currentAngleE, magnetoX, magnetoY
 
+def Mainloop(currentA=0, currentE=0, currentSunPointerA=0, currentSunPointerE=0):
+    currentA, currentE = updateSensors(currentA, currentE, currentSunPointerA, currentSunPointerE)
+    if motor.status() == 1:
+        if motor.direction == 1:
+            currentA -= 1
+        else:
+            currentA += 1
 
-        #uitlezen sensorwaarden
-        sensorvalues = zonneSensor.getADCvalues()
-        x,y = getMagnetoSensorValues()
-        currenthoekE = servo.getPosition()
+    sensorValues, currentAngleE, magnetoX, magnetoY = readSensorValues()
 
-        zonnewijzerhoekA = magnetoSensorValuesToAngle(x, y)
-        zonneStandA, zonneStandE = zonneSensorValuestoAngles(sensorvalues)
+    #Calculate the azimut and elevation agle from the values of the sunpositionsensor and the magnetosensor
+    currentSunPointerA = magnetoSensorValuesToAngle(magnetoX, magnetoY)
+    currentSunPointerE = currentAngleE
+    sunPositionA, sunPositionE = zonneSensorValuestoAngles(sensorValues)
 
+    updateMotor(currentSunPointerA, sunPositionA)
+    updateServo(sunPositionE)
 
-        if motor.status() == 1:
-            if motor.direction == 1:
-                currenthoekA -= 1
-                if currenthoekA < 0:
-                    currenthoekA += 360
-            else:
-                currenthoekA += 1
-                if currenthoekA > 360:
-                    currenthoekA -= 360
-
-        updateServo(zonnewijzerhoekE, zonnehoekE)
-        updateMotor(zonnewijzerhoekA, zonnehoekA)
-
-        print("hoek zon azimut: " + str(zonnehoekA), "hoek sensor azimut: " + str(zonnewijzerhoekA))
-        print("hoek zon elevatie: " + str(zonnehoekE), "hoek sensor elevatie: " + str(zonnewijzerhoekE) + "\n")
-        time.sleep(3)
-
-        #todo testen toevoegen die zonnesensor input invullen op sensor en uitkomende waarde testen
-        #todo test die invoerwaarden test (< 360 > 0
+    print("hoek zon azimut: " + str(zonnehoekA), "hoek sensor azimut: " + str(zonnewijzerhoekA))
+    print("hoek zon elevatie: " + str(zonnehoekE), "hoek sensor elevatie: " + str(zonnewijzerhoekE) + "\n")
+    time.sleep(3)
+    return Mainloop(currentA, currentE, currentSunPointerA, currentSunPointerE)
+    #todo recusrief maken en afmaken
 
 def keuzemenu():
     print("Zonnewijzer simulatie en test software. "
@@ -189,3 +207,10 @@ def keuzemenu():
         return
     # except:
         print("Geef a.u.b. alleen een nummer")
+    #todo afmaken simulatie en plotten
+    #todo test voor logger en timer
+    #todo logger / timer over cpp functie
+    #todo map implementeren
+    #todo document en dumentatie
+
+keuzemenu()
