@@ -2,6 +2,7 @@ C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release
 C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/magnetoSensor.dir
 C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/motor.dir
 C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/servo.dir
+C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/led.dir
 C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/cppFunctions.dir
 C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/ALL_BUILD.dir
 C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/build/temp.win-amd64-3.8/Release/zonneSensor/CMakeFiles/ZERO_CHECK.dir

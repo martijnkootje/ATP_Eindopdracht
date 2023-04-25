@@ -3,6 +3,7 @@ from magnetoSensor import *
 from servo import *
 from motor import *
 from cppFunctions import *
+from led import *
 import time
 import math
 import matplotlib.pyplot as plt
@@ -12,6 +13,7 @@ zonneSensor = zonnePositieSensor()
 magnetoSensor = magnetoSensor()
 servo = Servo()
 motor = Motor()
+led = Led()
 
 #not working decorator for testing functions with extreme and negative values
 # class NegativeNotHandledTester(object):
@@ -56,7 +58,6 @@ def timer(function):
         return result
     return functie
 
-#todo labda
 def updateZonneSensor(hoekA, hoekE, positive):
     if positive:
         hoekA += 1.6
@@ -144,6 +145,7 @@ def zonneSensorValuestoAngles(sensoren):
         azimut -= 360
     return azimut, elevatie
 
+#this function returns the direction and state of the motor, calculated with the current angle and wanted angle
 def motorDirectionAndState(currentPositionA, sunPositionA):
     state = False
     direction = False
@@ -179,7 +181,7 @@ def readSensorValues():
     magnetoX, magnetoY = getMagnetoSensorValues()
     return sensorvalues, magnetoX, magnetoY
 
-def Mainloop(lst=[[],[],[],[]], currentA=40, currentE=10, currentSunPointerA=0, currentSunPointerE=0, positive=True):
+def Mainloop(lst=[[],[],[],[]], currentA=8, currentE=2, currentSunPointerA=0, currentSunPointerE=0, positive=True):
 
     if motor.status() == 1:
         if motor.direction() == 1:
@@ -210,10 +212,10 @@ def Mainloop(lst=[[],[],[],[]], currentA=40, currentE=10, currentSunPointerA=0, 
     motor.setDirection(direction)
     if state:
         motor.turnON()
-        #todo led off
+        led.turnOFF()
     else:
         motor.turnOFF
-        #todo led on
+        led.turnON()
 
     lst[0].append(int(currentSunPointerA))
     lst[1].append(int(currentSunPointerE))
@@ -232,6 +234,8 @@ def RunSimulation():
     plt.plot(time, result[1])
     plt.plot(time, result[2])
     plt.plot(time, result[3])
+    plt.xlabel("Time(cycles)")
+    plt.ylabel("Value(degrees)")
     plt.show()
 
 RunSimulation()

@@ -109,6 +109,52 @@
 					<DistClean command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="led">
+				<Option output="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/led.cp310-win_amd64.pyd" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/extern/pybind11/include"/>
+					<Add directory="C:/Python310/Include"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include-fixed"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/Makefile&quot;  VERBOSE=1 led"/>
+					<CompileFile command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="led/fast">
+				<Option output="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/led.cp310-win_amd64.pyd" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="3"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/extern/pybind11/include"/>
+					<Add directory="C:/Python310/Include"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/backward"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/include-fixed"/>
+					<Add directory="c:\mingw\w64devkit\bin\../lib/gcc/x86_64-w64-mingw32/12.2.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/Makefile&quot;  VERBOSE=1 led/fast"/>
+					<CompileFile command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/w64devkit/bin/mingw32-make.exe -f &quot;C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 			<Target title="servo">
 				<Option output="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug/servo.cp310-win_amd64.pyd" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/cmake-build-debug"/>
@@ -270,6 +316,12 @@
 		</Build>
 		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/CppCode/CppFunctions.cpp">
 			<Option target="cppFunctions"/>
+		</Unit>
+		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/CppCode/Led/Led.cpp">
+			<Option target="led"/>
+		</Unit>
+		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/CppCode/Led/Led.h">
+			<Option target="led"/>
 		</Unit>
 		<Unit filename="C:/Users/marti/Desktop/HBO-ict/ATP_Eindopdracht/CppCode/MagnetoSensor/magnetoSensor.cpp">
 			<Option target="magnetoSensor"/>

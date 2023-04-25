@@ -122,7 +122,7 @@ class TestSensors(unittest.TestCase):
 class TestSystem(unittest.TestCase):
 
     def TestLoop(self, result, i=0, lst = []):
-        if i == len(result):
+        if i == len(result[0]):
             return lst
         if (result[0][i] - result[2][i]) > 3 or (result[0][i] - result[2][i]) < -3:
             lst.append(0)

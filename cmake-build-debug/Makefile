@@ -142,6 +142,19 @@ magnetoSensor/fast:
 .PHONY : magnetoSensor/fast
 
 #=============================================================================
+# Target rules for targets named led
+
+# Build rule for target.
+led: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 led
+.PHONY : led
+
+# fast build rule for target.
+led/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\led.dir\build.make CMakeFiles/led.dir/build
+.PHONY : led/fast
+
+#=============================================================================
 # Target rules for targets named servo
 
 # Build rule for target.
@@ -203,6 +216,30 @@ CppCode/CppFunctions.s: CppCode/CppFunctions.cpp.s
 CppCode/CppFunctions.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\cppFunctions.dir\build.make CMakeFiles/cppFunctions.dir/CppCode/CppFunctions.cpp.s
 .PHONY : CppCode/CppFunctions.cpp.s
+
+CppCode/Led/Led.obj: CppCode/Led/Led.cpp.obj
+.PHONY : CppCode/Led/Led.obj
+
+# target to build an object file
+CppCode/Led/Led.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\led.dir\build.make CMakeFiles/led.dir/CppCode/Led/Led.cpp.obj
+.PHONY : CppCode/Led/Led.cpp.obj
+
+CppCode/Led/Led.i: CppCode/Led/Led.cpp.i
+.PHONY : CppCode/Led/Led.i
+
+# target to preprocess a source file
+CppCode/Led/Led.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\led.dir\build.make CMakeFiles/led.dir/CppCode/Led/Led.cpp.i
+.PHONY : CppCode/Led/Led.cpp.i
+
+CppCode/Led/Led.s: CppCode/Led/Led.cpp.s
+.PHONY : CppCode/Led/Led.s
+
+# target to generate assembly for a file
+CppCode/Led/Led.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\led.dir\build.make CMakeFiles/led.dir/CppCode/Led/Led.cpp.s
+.PHONY : CppCode/Led/Led.cpp.s
 
 CppCode/MagnetoSensor/magnetoSensor.obj: CppCode/MagnetoSensor/magnetoSensor.cpp.obj
 .PHONY : CppCode/MagnetoSensor/magnetoSensor.obj
@@ -309,6 +346,7 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... cppFunctions
+	@echo ... led
 	@echo ... magnetoSensor
 	@echo ... motor
 	@echo ... servo
@@ -316,6 +354,9 @@ help:
 	@echo ... CppCode/CppFunctions.obj
 	@echo ... CppCode/CppFunctions.i
 	@echo ... CppCode/CppFunctions.s
+	@echo ... CppCode/Led/Led.obj
+	@echo ... CppCode/Led/Led.i
+	@echo ... CppCode/Led/Led.s
 	@echo ... CppCode/MagnetoSensor/magnetoSensor.obj
 	@echo ... CppCode/MagnetoSensor/magnetoSensor.i
 	@echo ... CppCode/MagnetoSensor/magnetoSensor.s
